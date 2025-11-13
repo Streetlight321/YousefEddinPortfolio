@@ -6,13 +6,12 @@
   <title>Yousef Eddin · Portfolio</title>    
   <link rel="icon" type="image/png" href="Me.png">
 
-
   <!-- Optional: nice, legible font; safe to remove if offline -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Portfolio of Yousef Eddin — Data Analyst & Supply Chain Analytict." />
+  <meta name="description" content="Portfolio of Yousef Eddin — Data Science & Analyst." />
 </head>
 <body>
 
@@ -21,21 +20,15 @@
     <div class="container header-inner">
       <div class="brand">
         <h1 class="brand__title">Yousef Eddin</h1>
-        <p class="brand__tagline">Data & Supply Chain Analytics</p>
+        <p class="brand__tagline">Data Scientist & Analyst</p>
       </div>
 
-      <nav class="nav" aria-label="Primary">
-        <ul class="nav__list">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+
 
       <div class="header-cta">
-        <a class="btn" href="#projects">View my work!</a>
-        <a class="btn btn--ghost" href="Resume%20Yousef.pdf" target="_blank" rel="noopener">Resume</a>
+        <!-- changed from #projects to projects.html -->
+        <a class="btn" href="projects.html">View my work!</a>
+        <a class="btn btn--ghost" href="Yousef%20Eddin%20Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
   </header>
@@ -48,202 +41,80 @@
           <div>
             <h2>Hi! I'm Yousef!</h2>
             <p>
-              I'm a Data Science student at the University of North Carolina at Charlotte, passionate about turning data into practical insights.
-              This portfolio highlights my projects and experiences in data analytics and supply chain, where I’m learning how thoughtful analysis can make real business impact.
+              I’m a senior at the University of North Carolina at Charlotte. When I’m not cooking or at the gym, I’m usually working on some ridiculous side project that started as a joke and somehow spiraled into actual code. This portfolio is my collection of those experiments that made it past the “chaos” phase.
             </p>
+
+            <!-- Optional: a small link to the hub -->
             <ul class="quick-links">
-              <li><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">LinkedIn</a></li>
-              <li><a href="https://github.com/Streetlight321" target="_blank" rel="noopener">GitHub</a></li>
-              <li><a href="https://www.kaggle.com/yousefeddin" target="_blank" rel="noopener">Kaggle</a></li>
-              <li><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></li>
+              <li><a href="projects.html">Browse all projects →</a></li>
             </ul>
           </div>
           <aside class="intro__aside">
-            <ul class="meta">
-              <li><span>Location:</span> Charlotte, North Carolina</li>
-              <li><span>Focus:</span> Data Analytics · Supply Chain</li>
-              <li><span>Stack:</span> Python, SQL, Github, Power BI, Excel</li>
-            </ul>
-        </aside>
-    </div>
-</div>
-</section>
-<!-- ======= Projects ======= -->
-<section id="projects" class="section section--alt">
-    <div class="container">
-        <div class="section__header">
-            <h2 class="section__title">Projects</h2>
-            <p class="section__subtitle">Just a few things I work on for fun :3</p>
-        </div>
-        
-        <div class="cards">
-      <article class="card">
-        <div class="card__head">
-          <h3>XGBoost Home Regressor</h3>
-          <div class="pill">Kaggle</div>
-        </div>
-        <p class="card__blurb">
-          Used Python to extract, clean, and apply machine learning to predict housing prices.
-        </p>
-        <ul class="card__bullets">
-          <li><strong>Problem:</strong> Estimate home prices based on complex market features.</li>
-          <li><strong>Approach:</strong> Data cleaning, feature engineering, and XGBoost regression model.</li>
-          <li><strong>Outcome:</strong> Achieved strong predictive accuracy and feature insights for key housing factors.</li>
-        </ul>
-        <div class="card__links">
-          <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/xgboost-home-regressor" target="_blank" rel="noopener">View on Kaggle</a>
-        </div>
-        <footer class="card__meta">
-          <span>Python</span><span>XGBoost</span><span>Machine Learning</span><span>EDA</span>
-        </footer>
-      </article>
-
-      <article class="card">
-        <div class="card__head">
-          <h3>Data Job Salary Predictions</h3>
-          <div class="pill">Kaggle</div>
-        </div>
-        <p class="card__blurb">
-          Analyzed 5,000 data points using Python’s Pandas and applied multilinear regression to predict salaries.
-        </p>
-        <ul class="card__bullets">
-          <li><strong>Problem:</strong> Predict salaries for data-related roles based on experience, location, and role type.</li>
-          <li><strong>Approach:</strong> Cleaned large dataset, explored correlations, and built a multilinear regression model.</li>
-          <li><strong>Insight:</strong> Found strong predictors in experience level and company size; produced interpretable salary trends.</li>
-        </ul>
-        <div class="card__links">
-          <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/data-job-salary-predictions" target="_blank" rel="noopener">View on Kaggle</a>
-        </div>
-        <footer class="card__meta">
-          <span>Python</span><span>Pandas</span><span>Regression</span><span>Data Analysis</span>
-        </footer>
-      </article>
-
-
-      <article class="card">
-        <div class="card__head">
-          <h3>Supplier Analysis</h3>
-          <div class="pill pill--kaggle" aria-label="Kaggle notebook">Kaggle</div>
-        </div>
-        <p class="card__blurb">
-          Analyzed revenue by supplier, lead times, and the tie between delivery speed and financial performance.
-        </p>
-        <ul class="card__bullets">
-          <li><strong>Problem:</strong> Identify top suppliers and bottlenecks across the chain.</li>
-          <li><strong>Approach:</strong> Exploratory data analysis with SQL/Python; feature pivots and visualizations.</li>
-          <li><strong>Insight:</strong> Clear pattern between on-time delivery and higher revenue share.</li>
-        </ul>
-        <div class="card__links">
-          <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/supplier-analysis" target="_blank" rel="noopener">Open on Kaggle</a>
-        </div>
-        <footer class="card__meta">
-          <span>Python</span><span>SQL</span><span>EDA</span>
-        </footer>
-      </article>
-    </div>
-  </div>
-</section>
-
+            <img src="devv.gif" alt="Developer animated illustration" class="intro__gif">
+          </aside>
         </div>
       </div>
     </section>
+
+    <!-- ======= Projects section REMOVED from home page ======= -->
+    <!-- (now lives in projects.html) -->
 
     <!-- ======= Experience ======= -->
     <section id="experience" class="section">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Experience</h2>
-          <p class="section__subtitle">Roles where I delivered analytics with business impact.</p>
-        </div>
-
-        <ul class="timeline">
-          <li class="timeline__item">
-            <h3>Supply Chain Analyst Intern — ABB</h3>
-            <p class="timeline__meta">May 2025 – Aug 2025</p>
-            <p>Streamlined analytics in Power BI/Python/Excel and automated commodity price reporting to free buyer capacity.</p>
-          </li>
-          <li class="timeline__item">
-            <h3>Data Analyst Intern — 3D Systems</h3>
-            <p class="timeline__meta">May 2024 – Aug 2024</p>
-            <p>Built ML models to optimize inventory; integrated Oracle + Salesforce using SQL &amp; Excel; created exec-ready dashboards.</p>
-          </li>
-          <li class="timeline__item">
-            <h3>App Developer Lab Facilitator — Central Piedmont Community College</h3>
-            <p class="timeline__meta">Aug 2024 – Present</p>
-            <p>Coached students on Python, SQL, SAS, Excel, Java, Git, and core data structures.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-<!-- ======= Skills ======= -->
-<section id="skills" class="section section--alt">
   <div class="container">
     <div class="section__header">
-      <h2 class="section__title">Skills & Technical Proficiencies</h2>
-      <p class="section__subtitle">Core tools and technologies I use for analytics, automation, and data-driven problem solving.</p>
+      <h2 class="section__title">Experience</h2>
+      <p class="section__subtitle">Roles where I delivered analytics with business impact.</p>
     </div>
 
-    <ul class="tags">
-      <!-- Data & Analytics -->
-      <li>Python</li>
-      <li>SQL</li>
-      <li>Power BI</li>
-      <li>Excel</li>
-      <li>R</li>
-      <li>SAS</li>
-      <li>Data Scraping</li>
-      <li>Data Cleaning</li>
-      <li>Data Visualization</li>
-      <li>Machine Learning</li>
+    <ul class="timeline">
 
-      <!-- Business & Process Improvement -->
-      <li>Lean Six Sigma (Yellow Belt)</li>
-      <li>Process Optimization</li>
-      <li>Root Cause Analysis</li>
-      <li>Supply Chain Analytics</li>
-      <li>Forecasting</li>
-      <li>Inventory Modeling</li>
+      <li class="timeline__item">
+        <h3>Supply Chain Analyst Intern — ABB</h3>
+        <p class="timeline__meta">May 2025 – Aug 2025</p>
+        <ul class="timeline__bullets">
+          <li>Automated commodity price reports using Python, reducing manual workload for global buyers.</li>
+          <li>Created Power BI dashboards to track savings, supplier performance, and KPIs.</li>
+          <li>Cleaned and analyzed SAP procurement data to support sourcing strategies.</li>
+        </ul>
+      </li>
 
-      <!-- Tools & Platforms -->
-      <li>Salesforce</li>
-      <li>Einstein Analytics</li>
-      <li>Microsoft 365</li>
-      <li>Jupyter Notebooks</li>
-      <li>Git</li>
-      <li>GitHub</li>
-      <li>Kaggle</li>
+      <li class="timeline__item">
+        <h3>Data Analyst Intern — 3D Systems</h3>
+        <p class="timeline__meta">May 2024 – Aug 2024</p>
+        <ul class="timeline__bullets">
+          <li>Developed machine learning models to optimize inventory and forecast part usage trends.</li>
+          <li>Integrated data from Oracle and Salesforce using SQL + Excel automations.</li>
+          <li>Built dashboards for executives that visualized revenue, lead times, and production metrics.</li>
+        </ul>
+      </li>
 
-      <!-- Programming & Development -->
-      <li>Java</li>
-      <li>App Development</li>
-      <li>APIs</li>
-      <li>Automation</li>
+      <li class="timeline__item">
+        <h3>App Developer Lab Facilitator — Central Piedmont Community College</h3>
+        <p class="timeline__meta">Aug 2024 – Present</p>
+        <ul class="timeline__bullets">
+          <li>Supported students in Python, SQL, SAS, Excel, Java, Git, and data structures.</li>
+          <li>Debugged student projects and explained concepts through hands-on examples.</li>
+          <li>Created walkthroughs to help students understand programming fundamentals.</li>
+        </ul>
+      </li>
+
     </ul>
   </div>
 </section>
-
-
-    <!-- ======= Contact ======= -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Contact</h2>
-        </div>
-        <div class="contact">
-          <p><strong>Email:</strong> <a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
-          <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
-          <p><strong>Phone Number:</strong> <a href="(704)494-1541">(704)494-1541</a></p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="container footer-inner">
+      <div class="contact">
+        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
+        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      </div>
       <p>© <span id="year"></span> Yousef Eddin · Built with vanilla HTML &amp; CSS</p>
     </div>
+
     <script>
-      // tiny enhancement: current year in footer (no external deps)
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </footer>
