@@ -37,10 +37,13 @@ body {
 .brand__link {
   color: inherit;
   text-decoration: none;
+  cursor: pointer; /* keeps normal cursor */
 }
+
 .brand__link:hover {
-  text-decoration: underline;
+  text-decoration: none; /* no underline on hover */
 }
+
 
 .site-header {
   background: #fff;
