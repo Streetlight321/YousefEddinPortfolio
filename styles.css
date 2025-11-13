@@ -344,11 +344,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
-
 /* ======================
    RESPONSIVE FIXES
 ====================== */
-
 @media (max-width: 800px) {
   .intro__grid {
     grid-template-columns: 1fr;
