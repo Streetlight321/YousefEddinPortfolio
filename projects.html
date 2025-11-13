@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects · Yousef Eddin</title>
+  <link rel="icon" type="image/png" href="Me.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="description" content="Project portfolio of Yousef Eddin — Data Science & Analyst." />
+</head>
+<body>
+
+  <!-- Reuse same header -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand__title">Yousef Eddin</h1>
+        <p class="brand__tagline">Data Scientist & Analyst</p>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav__list">
+          <!-- back home -->
+          <li><a href="index.html">Home</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn" href="index.html#experience">Experience</a>
+        <a class="btn btn--ghost" href="Yousef%20Eddin%20Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ======= Project Hub ======= -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Project Hub</h2>
+          <p class="section__subtitle">
+            A collection of data projects where I build models, explore datasets, and ship analyses.
+          </p>
+        </div>
+
+        <div class="cards">
+          <!-- Project 1 -->
+          <article class="card">
+            <div class="card__head">
+              <h3>XGBoost Home Regressor</h3>
+            </div>
+            <p class="card__blurb">
+              Used Python to extract, clean, and apply machine learning to predict housing prices.
+            </p>
+            <ul class="card__bullets">
+            <li><strong>Problem:</strong> Estimate home prices based on complex market features.</li>
+            <li><strong>Approach:</strong> Data cleaning, feature engineering, and XGBoost regression model.</li>
+            <li><strong>Outcome:</strong> Achieved strong predictive accuracy and feature insights for key housing factors.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="xgboost-home-regressor.html">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span>
+              <span>XGBoost</span>
+              <span>Regression</span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card">
+            <div class="card__head">
+              <h3>Job Salary Predictions</h3>
+            </div>
+            <p class="card__blurb">
+              Used Python to clean job market data and build regression models to predict salaries.
+            </p>
+            <ul class="card__bullets">
+            <li><strong>Problem:</strong> People are often under paid. How do I know how much I should be paid?</li>
+            <li><strong>Approach:</strong> Cleaned a large dataset, then used Linear Regression to predict how much salary should be.</li>
+            <li><strong>Insight:</strong> Strong features in experience level and company size; produced interpretable salary trends.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="data-job-salary-predictions.html">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>Regression</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card">
+            <div class="card__head">
+              <h3>Supplier Analysis</h3>
+            </div>
+            <p class="card__blurb">
+              Analyzed revenue by supplier, lead times, and the tie between delivery speed and financial performance.
+        </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> Identify top suppliers and bottlenecks across the chain.</li>
+            <li><strong>Approach:</strong> Exploratory data analysis with SQL/Python; feature pivots and visualizations.</li>
+            <li><strong>Insight:</strong> Clear pattern between on-time delivery and higher revenue share.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="supplier-analysis.html">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span>
+              <span>SQL</span>
+              <span>Supply Chain</span>
+            </div>
+          </article>
+
+          <!-- Add more project cards here in the same structure -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="contact">
+        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
+        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      </div>
+      <p>© <span id="year"></span> Yousef Eddin · Built with vanilla HTML &amp; CSS</p>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
