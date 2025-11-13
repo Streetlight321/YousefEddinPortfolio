@@ -37,11 +37,13 @@ body {
 .brand__link {
   color: inherit;
   text-decoration: none;
-  cursor: pointer; /* keeps normal cursor */
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .brand__link:hover {
-  text-decoration: none; /* no underline on hover */
+  color: var(--accent); /* turns pink on hover */
+  text-decoration: none;
 }
 
 
