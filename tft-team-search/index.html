@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TFT Team Search</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <h1>TFT Team Search</h1>
+      <p class="muted">Filter by level and what you already have. Results are ranked by closest-to-complete.</p>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <!-- LEFT: Controls -->
+    <section class="panel">
+      <h2>Level</h2>
+      <div class="row">
+        <label for="levelSelect" class="label">Choose level</label>
+        <select id="levelSelect" class="select"></select>
+      </div>
+
+      <hr class="sep" />
+
+      <h2>What do you already have?</h2>
+
+      <div class="row">
+        <label for="champSearch" class="label">Search champions</label>
+        <input id="champSearch" class="input" type="text" placeholder="Type to filter champions…" />
+      </div>
+
+      <div class="row">
+        <div class="label">Selected</div>
+        <div id="selectedChamps" class="chips"></div>
+      </div>
+
+      <div class="row">
+        <div class="label">Pick champions</div>
+        <div id="champList" class="listbox" role="listbox" aria-label="Champion picker"></div>
+      </div>
+
+      <hr class="sep" />
+
+      <h2>Minimize the search</h2>
+      <div class="row">
+        <label for="minOverlap" class="label">Minimum overlap</label>
+        <div class="row-inline">
+          <input id="minOverlap" type="range" min="0" max="10" value="0" />
+          <span id="minOverlapLabel" class="pill">0</span>
+        </div>
+        <p class="muted small">Show comps where you already own at least this many units in the comp.</p>
+      </div>
+
+      <div class="row">
+        <label for="sortMode" class="label">Sort</label>
+        <select id="sortMode" class="select">
+          <option value="closest" selected>Closest to complete</option>
+          <option value="bronze">Most bronze traits</option>
+          <option value="missing">Fewest missing</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <button id="clearOwned" class="btn">Clear selections</button>
+      </div>
+
+      <div class="row">
+        <div class="muted small">
+          Tip: If opening this file directly (file://), your browser may block fetching JSON.
+          Use a local web server (instructions below).
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Results -->
+    <section class="panel">
+      <div class="row-inline between">
+        <h2>Results</h2>
+        <div id="resultCount" class="pill">0</div>
+      </div>
+
+      <div id="results" class="results"></div>
+    </section>
+  </main>
+
+  <footer class="footer container muted small">
+    Data loaded from <code>best_levels_2_5.json</code>.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

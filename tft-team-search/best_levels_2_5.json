@@ -1,0 +1,1188 @@
+{
+  "generated_at_utc": "2026-01-12T16:06:44.381370+00:00",
+  "top_n": 20,
+  "levels": {
+    "2": [
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Blitzcrank",
+          "Briar"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Juggernaut"
+        ],
+        "trait_counts": {
+          "Zaun": 1,
+          "Juggernaut": 2,
+          "Noxus": 1,
+          "Slayer": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Briar",
+          "Qiyana"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Slayer"
+        ],
+        "trait_counts": {
+          "Noxus": 1,
+          "Slayer": 2,
+          "Juggernaut": 1,
+          "Ixtal": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Longshot"
+        ],
+        "trait_counts": {
+          "Piltover": 1,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Kog'Maw",
+          "Lulu"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Arcanist"
+        ],
+        "trait_counts": {
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 1,
+          "Yordle": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Anivia",
+          "Sona"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Invoker"
+        ],
+        "trait_counts": {
+          "Freljord": 1,
+          "Invoker": 2,
+          "Demacia": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Illaoi",
+          "Shen"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Bruiser"
+        ],
+        "trait_counts": {
+          "Bilgewater": 1,
+          "Bruiser": 2,
+          "Ionia": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Jarvan IV",
+          "Rumble"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Defender"
+        ],
+        "trait_counts": {
+          "Demacia": 1,
+          "Defender": 2,
+          "Yordle": 1
+        }
+      },
+      {
+        "level": 2,
+        "team_size": 2,
+        "max_cost_allowed": 1,
+        "team": [
+          "Lulu",
+          "Rumble"
+        ],
+        "bronze_count": 1,
+        "bronze_traits": [
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Yordle": 2,
+          "Arcanist": 1,
+          "Defender": 1
+        }
+      }
+    ],
+    "3": [
+      {
+        "level": 3,
+        "team_size": 3,
+        "max_cost_allowed": 2,
+        "team": [
+          "Kog'Maw",
+          "Lulu",
+          "Teemo"
+        ],
+        "bronze_count": 3,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 3,
+        "team_size": 3,
+        "max_cost_allowed": 2,
+        "team": [
+          "Lulu",
+          "Neeko",
+          "Rumble"
+        ],
+        "bronze_count": 3,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Yordle": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2
+        }
+      }
+    ],
+    "4": [
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Briar",
+          "Cho'Gath",
+          "Gangplank",
+          "Rek'Sai"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Juggernaut",
+          "Slayer",
+          "Vanquisher",
+          "Void"
+        ],
+        "trait_counts": {
+          "Noxus": 1,
+          "Slayer": 2,
+          "Juggernaut": 2,
+          "Void": 2,
+          "Bilgewater": 1,
+          "Vanquisher": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Cho'Gath",
+          "Kog'Maw",
+          "Lulu",
+          "Poppy"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Juggernaut": 2,
+          "Arcanist": 2,
+          "Longshot": 1,
+          "Yordle": 2,
+          "Demacia": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Cho'Gath",
+          "Kog'Maw",
+          "Poppy",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Juggernaut",
+          "Longshot",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Juggernaut": 2,
+          "Arcanist": 1,
+          "Longshot": 2,
+          "Demacia": 1,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Kog'Maw",
+          "Neeko",
+          "Rumble",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Aphelios",
+          "Kog'Maw",
+          "Lulu",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Aphelios",
+          "Lulu",
+          "Neeko",
+          "Rumble"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Yordle": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Caitlyn",
+          "Rumble",
+          "Teemo",
+          "Vi"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Yordle": 2,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Cho'Gath",
+          "Kog'Maw",
+          "Lulu",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Juggernaut": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Kog'Maw",
+          "Leona",
+          "Lulu",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Targon": 1,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Kog'Maw",
+          "Lulu",
+          "Malzahar",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2,
+          "Disruptor": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Kog'Maw",
+          "Lulu",
+          "Rek'Sai",
+          "Teemo"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2,
+          "Vanquisher": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Kog'Maw",
+          "Lulu",
+          "Teemo",
+          "Zoe"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Longshot",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Yordle": 2,
+          "Targon": 1
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Leona",
+          "Lulu",
+          "Neeko",
+          "Rumble"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Yordle": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2
+        }
+      },
+      {
+        "level": 4,
+        "team_size": 4,
+        "max_cost_allowed": 3,
+        "team": [
+          "Lulu",
+          "Neeko",
+          "Rumble",
+          "Zoe"
+        ],
+        "bronze_count": 4,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Yordle": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Targon": 1
+        }
+      }
+    ],
+    "5": [
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Loris",
+          "Nautilus",
+          "Neeko",
+          "Swain",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Juggernaut",
+          "Piltover",
+          "Warden"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Warden": 2,
+          "Bilgewater": 1,
+          "Juggernaut": 2,
+          "Ixtal": 1,
+          "Arcanist": 2,
+          "Defender": 2,
+          "Noxus": 1,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Ambessa",
+          "Briar",
+          "Gangplank",
+          "Kog'Maw",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Noxus",
+          "Slayer",
+          "Vanquisher"
+        ],
+        "trait_counts": {
+          "Noxus": 3,
+          "Vanquisher": 2,
+          "Slayer": 2,
+          "Juggernaut": 2,
+          "Bilgewater": 1,
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Ambessa",
+          "Briar",
+          "Gangplank",
+          "Neeko",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Noxus",
+          "Slayer",
+          "Vanquisher"
+        ],
+        "trait_counts": {
+          "Noxus": 3,
+          "Vanquisher": 2,
+          "Slayer": 2,
+          "Juggernaut": 2,
+          "Bilgewater": 1,
+          "Ixtal": 1,
+          "Arcanist": 2,
+          "Defender": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Aphelios",
+          "Caitlyn",
+          "Kog'Maw",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Targon"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Aphelios",
+          "Kog'Maw",
+          "Poppy",
+          "Swain",
+          "Teemo"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Longshot",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Void": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Demacia": 1,
+          "Yordle": 2,
+          "Juggernaut": 2,
+          "Noxus": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Aphelios",
+          "Neeko",
+          "Poppy",
+          "Rumble",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Juggernaut",
+          "Targon",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Targon": 1,
+          "Ixtal": 1,
+          "Arcanist": 2,
+          "Defender": 2,
+          "Demacia": 1,
+          "Yordle": 2,
+          "Juggernaut": 2,
+          "Noxus": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Bel'Veth",
+          "Briar",
+          "Kog'Maw",
+          "Lulu",
+          "Poppy"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Slayer",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Slayer": 2,
+          "Noxus": 1,
+          "Juggernaut": 2,
+          "Arcanist": 2,
+          "Longshot": 1,
+          "Yordle": 2,
+          "Demacia": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Bel'Veth",
+          "Briar",
+          "Kog'Maw",
+          "Poppy",
+          "Teemo"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Juggernaut",
+          "Longshot",
+          "Slayer",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Slayer": 2,
+          "Noxus": 1,
+          "Juggernaut": 2,
+          "Arcanist": 1,
+          "Longshot": 2,
+          "Demacia": 1,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Bel'Veth",
+          "Briar",
+          "Kog'Maw",
+          "Poppy",
+          "Veigar"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Slayer",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Slayer": 2,
+          "Noxus": 1,
+          "Juggernaut": 2,
+          "Arcanist": 2,
+          "Longshot": 1,
+          "Demacia": 1,
+          "Yordle": 2
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Bel'Veth",
+          "Caitlyn",
+          "Kog'Maw",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Void"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Slayer": 1,
+          "Piltover": 2,
+          "Longshot": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Bel'Veth",
+          "Kog'Maw",
+          "Poppy",
+          "Swain",
+          "Teemo"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Longshot",
+          "Void",
+          "Yordle"
+        ],
+        "trait_counts": {
+          "Void": 2,
+          "Slayer": 1,
+          "Arcanist": 2,
+          "Longshot": 2,
+          "Demacia": 1,
+          "Yordle": 2,
+          "Juggernaut": 2,
+          "Noxus": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Briar",
+          "Darius",
+          "Gangplank",
+          "Neeko",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Juggernaut",
+          "Noxus",
+          "Slayer"
+        ],
+        "trait_counts": {
+          "Noxus": 3,
+          "Slayer": 2,
+          "Juggernaut": 2,
+          "Defender": 2,
+          "Bilgewater": 1,
+          "Vanquisher": 1,
+          "Ixtal": 1,
+          "Arcanist": 2
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Briar",
+          "Gangplank",
+          "Kog'Maw",
+          "Rek'Sai",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Slayer",
+          "Vanquisher",
+          "Void"
+        ],
+        "trait_counts": {
+          "Noxus": 2,
+          "Slayer": 2,
+          "Juggernaut": 2,
+          "Bilgewater": 1,
+          "Vanquisher": 2,
+          "Void": 2,
+          "Arcanist": 2,
+          "Longshot": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Cho'Gath",
+          "Kog'Maw",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Void"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 2,
+          "Juggernaut": 1,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Cho'Gath",
+          "Kog'Maw",
+          "Swain",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Longshot",
+          "Piltover",
+          "Void"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 2,
+          "Juggernaut": 2,
+          "Arcanist": 2,
+          "Noxus": 1,
+          "Zaun": 1,
+          "Defender": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Leona",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Targon"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 2,
+          "Targon": 1,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Loris",
+          "Nautilus",
+          "Swain"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Juggernaut",
+          "Longshot",
+          "Piltover",
+          "Warden"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 2,
+          "Warden": 2,
+          "Bilgewater": 1,
+          "Juggernaut": 2,
+          "Noxus": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Malzahar",
+          "Neeko",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Void"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 2,
+          "Arcanist": 2,
+          "Disruptor": 1,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Neeko",
+          "Rek'Sai",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Void"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 2,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Vanquisher": 1,
+          "Zaun": 1
+        }
+      },
+      {
+        "level": 5,
+        "team_size": 5,
+        "max_cost_allowed": 4,
+        "team": [
+          "Caitlyn",
+          "Kog'Maw",
+          "Neeko",
+          "Taric",
+          "Vi"
+        ],
+        "bronze_count": 5,
+        "bronze_traits": [
+          "Arcanist",
+          "Defender",
+          "Longshot",
+          "Piltover",
+          "Targon"
+        ],
+        "trait_counts": {
+          "Piltover": 2,
+          "Longshot": 2,
+          "Void": 1,
+          "Arcanist": 2,
+          "Ixtal": 1,
+          "Defender": 2,
+          "Targon": 1,
+          "Zaun": 1
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #121823;
+  --border: #223044;
+  --text: #e7edf6;
+  --muted: #9fb0c6;
+  --chip: #1a2433;
+  --chip-border: #2a3a55;
+  --accent: #7aa2ff;
+  --danger: #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.topbar {
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0d1320, var(--bg));
+  padding: 20px 0;
+}
+
+h1 { margin: 0 0 6px 0; font-size: 22px; }
+h2 { margin: 0 0 12px 0; font-size: 18px; }
+p { margin: 0; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  padding: 18px 0 26px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.row { margin: 10px 0; }
+.row-inline { display: flex; align-items: center; gap: 10px; }
+.between { justify-content: space-between; }
+
+.label { display: block; margin-bottom: 6px; color: var(--muted); font-size: 13px; }
+.small { font-size: 12px; }
+
+.input, .select {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0d1320;
+  color: var(--text);
+  outline: none;
+}
+.input:focus, .select:focus {
+  border-color: #37507a;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #0d1320;
+  color: var(--text);
+  cursor: pointer;
+}
+.btn:hover { border-color: #37507a; }
+.btn:active { transform: translateY(1px); }
+
+.sep {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 14px 0;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #0d1320;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.muted { color: var(--muted); }
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 34px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid var(--chip-border);
+  font-size: 13px;
+}
+
+.chip button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+.chip button:hover { color: var(--danger); }
+
+.listbox {
+  max-height: 280px;
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #0d1320;
+  padding: 8px;
+}
+
+.pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.pick:hover { border-color: #2a3a55; background: #0b1120; }
+.pick input { transform: scale(1.1); }
+
+.results { display: grid; gap: 12px; }
+
+.card {
+  border: 1px solid var(--border);
+  background: #0d1320;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.card-title { font-weight: 600; }
+.card-sub { color: var(--muted); font-size: 12px; }
+
+.kv { display: grid; grid-template-columns: 120px 1fr; gap: 8px; margin-top: 8px; }
+.k { color: var(--muted); font-size: 12px; padding-top: 3px; }
+.v { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #0b1120;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.badge.good { border-color: rgba(122,162,255,.35); color: #cfe0ff; }
+.badge.miss { border-color: rgba(255,107,107,.35); color: #ffd0d0; }
+
+.footer { padding: 18px 0 26px; }
+code { color: #cfe0ff; }
