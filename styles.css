@@ -279,7 +279,6 @@ body {
   line-height: 1;
 }
 
-/* WIP uses existing accent system */
 .badge--wip {
   background: rgba(255, 122, 192, 0.12); /* soft accent tint */
   color: var(--accent);
