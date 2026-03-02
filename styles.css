@@ -266,24 +266,7 @@ body {
   color: var(--muted);
   font-size: 0.85rem;
 }
-.badge {
-  display: inline-block;
-  margin-left: 0.6rem;
-  padding: 0.25rem 0.65rem;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-radius: 999px;
-  vertical-align: middle;
-  line-height: 1;
-}
 
-.badge--wip {
-  background: rgba(255, 122, 192, 0.12); /* soft accent tint */
-  color: var(--accent);
-  border: 2px solid rgba(255, 122, 192, 0.35);
-}
 
 .card__meta span {
   background: #f5f5f7;
@@ -309,9 +292,31 @@ body {
   }
 }
 
+/* ======================
+   BADGE STUFF
+====================== */
+
+.badge {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.badge--wip {
+  background: rgba(255, 122, 192, 0.12); /* soft accent tint */
+  color: var(--accent);
+  border: 2px solid rgba(255, 122, 192, 0.35);
+}
 
 /* ======================
-   EXPERIENCE TIMELINE
+EXPERIENCE TIMELINE
 ====================== */
 
 .timeline {
