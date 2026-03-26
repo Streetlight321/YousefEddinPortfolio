@@ -314,11 +314,6 @@ body {
   border: 2px solid rgba(94, 208, 189, 0.4);
 }
 
-.badge--wip {
-  background: rgba(255, 122, 192, 0.12);
-  color: var(--accent);
-  border: 2px solid rgba(255, 122, 192, 0.35);
-}
 
 
 /* ======================
