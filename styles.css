@@ -308,6 +308,11 @@ body {
   vertical-align: middle;
   line-height: 1;
 }
+.badge--capstone {
+  background: rgba(94, 208, 189, 0.12);
+  color: #2a9d8f;
+  border: 2px solid rgba(94, 208, 189, 0.4);
+}
 
 .badge--wip {
   background: rgba(255, 122, 192, 0.12);
@@ -315,11 +320,6 @@ body {
   border: 2px solid rgba(255, 122, 192, 0.35);
 }
 
-.badge--capstone {
-  background: rgba(94, 208, 189, 0.12);
-  color: #2a9d8f;
-  border: 2px solid rgba(94, 208, 189, 0.4);
-}
 
 /* ======================
 EXPERIENCE TIMELINE
