@@ -303,10 +303,11 @@
           <!-- Hero Stats -->
           <div class="hero-stats" id="hero-stats"></div>
 
-          <!-- Weekly Volume Chart -->
+          <!-- Daily Volume by Type Chart -->
           <div class="dash-section">
-            <h3 class="dash-section__title">Weekly Volume (lbs) + BW Reps</h3>
+            <h3 class="dash-section__title">Daily Volume by Type</h3>
             <div class="chart-container" id="weekly-chart-wrap" style="position:relative;"></div>
+            <div id="daily-session-detail"></div>
           </div>
 
           <!-- Exercise Progress -->
@@ -476,19 +477,21 @@
       return streak;
     }
 
-    function groupByWeek(rows) {
-      const weeks = {};
+    function groupByDay(rows) {
+      const dayMap = {};   // dateString -> { date, Push, Pull, Leg }
       rows.forEach(r => {
-        const d = new Date(r.date);
-        const jan1 = new Date(d.getFullYear(), 0, 1);
-        const weekNum = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
-        const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        const label = monthNames[d.getMonth()] + ' W' + Math.ceil(d.getDate() / 7);
-        const key = d.getFullYear() + '-' + String(weekNum).padStart(2, '0');
-        if (!weeks[key]) weeks[key] = { label, volume: 0, key };
-        weeks[key].volume += r.isBodyweight ? r.reps : r.volume;
+        const dt = r.dayType.charAt(0).toUpperCase() + r.dayType.slice(1).toLowerCase();
+        const group = dt === 'Legs' ? 'Leg' : dt;
+        if (!['Push', 'Pull', 'Leg'].includes(group)) return;
+        const key = r.date.toDateString();
+        if (!dayMap[key]) dayMap[key] = { date: r.date, Push: 0, Pull: 0, Leg: 0 };
+        dayMap[key][group] += r.isBodyweight ? r.reps : r.volume;
       });
-      return Object.values(weeks).sort((a, b) => a.key.localeCompare(b.key));
+      const entries = Object.values(dayMap).sort((a, b) => a.date - b.date);
+      const dates = entries.map(e => e.date);
+      const map = {};
+      entries.forEach(e => { map[e.date.toDateString()] = e; });
+      return { dates, map };
     }
 
     function groupByMuscle(rows) {
@@ -546,9 +549,10 @@
       const map = {};
       rows.forEach(r => {
         const key = r.date.toDateString();
-        if (!map[key]) map[key] = { date: r.date, dayType: r.dayType, exercises: [], volume: 0 };
+        if (!map[key]) map[key] = { date: r.date, dayType: r.dayType, exercises: [], volume: 0, sets: 0 };
         map[key].exercises.push(r);
         map[key].volume += r.volume;
+        map[key].sets = (map[key].sets || 0) + 1;
       });
       return Object.values(map).sort((a, b) => b.date - a.date);
     }
@@ -588,66 +592,163 @@
       ).join('');
     }
 
+    function renderDailySessionDetail(session) {
+      const detailWrap = $('#daily-session-detail');
+      if (!session) { detailWrap.innerHTML = ''; return; }
+      const exNames = [...new Set(session.exercises.map(e => e.exercise))];
+      const tableRows = session.exercises.map(e =>
+        `<tr><td>${e.exercise}</td><td>${e.set}</td><td>${e.weight ? e.weight + ' lbs' : 'BW'}</td><td>${e.reps || '-'}</td><td>${fmt(Math.round(e.volume))} lbs</td></tr>`
+      ).join('');
+      detailWrap.innerHTML = `<div class="session-card">
+        <button onclick="this.closest('.session-card').parentElement.innerHTML=''" style="float:right;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--muted);">\u2715</button>
+        <div class="session-card__header">
+          <span class="session-card__date">${formatDate(session.date)}</span>
+          <span class="session-card__type">${session.dayType}</span>
+        </div>
+        <div class="session-card__stats">
+          <span>Volume: ${fmt(Math.round(session.volume))} lbs</span>
+          <span>${exNames.length} exercises</span>
+          <span>${session.sets} sets</span>
+        </div>
+        <div class="session-card__details open">
+          <table>
+            <thead><tr><th>Exercise</th><th>Set #</th><th>Weight</th><th>Reps</th><th>Volume</th></tr></thead>
+            <tbody>${tableRows}</tbody>
+          </table>
+        </div>
+      </div>`;
+      detailWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     function renderWeeklyChart(rows) {
-      const weeks = groupByWeek(rows);
-      if (!weeks.length) return;
+      const { dates, map } = groupByDay(rows);
+      if (!dates.length) return;
+
+      // Build session lookup by date
+      const sessionsByDate = {};
+      sessionsGrouped(rows).forEach(s => { sessionsByDate[s.date.toDateString()] = s; });
 
       const W = 900, H = 340, pad = { t: 20, r: 30, b: 60, l: 70 };
       const plotW = W - pad.l - pad.r;
       const plotH = H - pad.t - pad.b;
-      const maxV = Math.max(...weeks.map(w => w.volume)) * 1.1;
+      const groups = ['Push', 'Pull', 'Leg'];
+      const colors = { Push: '#6c63ff', Pull: '#ff7ac0', Leg: '#5ed0bd' };
+
+      // Compute maxV across all individual day/group values
+      let maxV = 0;
+      dates.forEach(d => {
+        const entry = map[d.toDateString()];
+        groups.forEach(g => { if (entry[g] > maxV) maxV = entry[g]; });
+      });
+      maxV *= 1.1;
+      if (maxV === 0) maxV = 1;
+
+      // X position for each date index
+      const xPos = (i) => pad.l + (plotW * i / (dates.length - 1 || 1));
 
       const svg = makeSVG('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'xMidYMid meet' });
       const wrap = $('#weekly-chart-wrap');
       const tooltip = $('#tooltip');
 
+      // Track all dot circles for selection reset
+      const allDots = [];
+      let selectedDot = null;
+
       // Grid lines
       for (let i = 0; i <= 4; i++) {
         const y = pad.t + plotH - (plotH * i / 4);
-        const line = makeSVG('line', { x1: pad.l, y1: y, x2: W - pad.r, y2: y, stroke: '#f0f0f0', 'stroke-width': 1 });
-        svg.appendChild(line);
+        svg.appendChild(makeSVG('line', { x1: pad.l, y1: y, x2: W - pad.r, y2: y, stroke: '#f0f0f0', 'stroke-width': 1 }));
         const txt = makeSVG('text', { x: pad.l - 10, y: y + 4, 'text-anchor': 'end', fill: '#676788', 'font-size': '11' });
         txt.textContent = fmt(Math.round(maxV * i / 4));
         svg.appendChild(txt);
       }
 
-      // Points and path
-      const points = weeks.map((w, i) => {
-        const x = pad.l + (plotW * i / (weeks.length - 1 || 1));
-        const y = pad.t + plotH - (plotH * w.volume / maxV);
-        return { x, y, w };
+      // For each group, collect points where volume > 0, draw polyline + dots
+      groups.forEach(g => {
+        const color = colors[g];
+        const pts = [];
+        dates.forEach((d, i) => {
+          const val = map[d.toDateString()][g];
+          if (val > 0) {
+            const x = xPos(i);
+            const y = pad.t + plotH - (plotH * val / maxV);
+            pts.push({ x, y, val, date: d, group: g });
+          }
+        });
+
+        // Draw one polyline connecting all of this group's points in order
+        if (pts.length >= 2) {
+          svg.appendChild(makeSVG('polyline', {
+            points: pts.map(p => p.x + ',' + p.y).join(' '),
+            fill: 'none', stroke: color, 'stroke-width': 2.5, 'stroke-linejoin': 'round'
+          }));
+        }
+
+        // Draw dots with tooltips and click
+        pts.forEach(p => {
+          const circle = makeSVG('circle', { cx: p.x, cy: p.y, r: 4, fill: color, style: 'cursor:pointer' });
+          allDots.push(circle);
+          const label = g + ' \u00b7 ' + formatDate(p.date) + ': ' + fmt(Math.round(p.val));
+          circle.addEventListener('mouseenter', () => {
+            tooltip.style.display = 'block';
+            tooltip.textContent = label;
+          });
+          circle.addEventListener('mousemove', (e) => {
+            tooltip.style.left = e.pageX + 10 + 'px';
+            tooltip.style.top = e.pageY - 30 + 'px';
+          });
+          circle.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+          circle.addEventListener('click', () => {
+            if (selectedDot === circle) {
+              // Toggle off
+              circle.setAttribute('r', '4');
+              circle.removeAttribute('stroke');
+              circle.removeAttribute('stroke-width');
+              selectedDot = null;
+              $('#daily-session-detail').innerHTML = '';
+              return;
+            }
+            // Reset previous selection
+            allDots.forEach(dot => {
+              dot.setAttribute('r', '4');
+              dot.removeAttribute('stroke');
+              dot.removeAttribute('stroke-width');
+            });
+            // Highlight this dot
+            circle.setAttribute('r', '7');
+            circle.setAttribute('stroke', '#fff');
+            circle.setAttribute('stroke-width', '2');
+            selectedDot = circle;
+            // Show session detail
+            const session = sessionsByDate[p.date.toDateString()];
+            renderDailySessionDetail(session);
+          });
+          svg.appendChild(circle);
+        });
       });
 
-      const pathD = points.map((p, i) => (i === 0 ? 'M' : 'L') + p.x + ',' + p.y).join(' ');
-      svg.appendChild(makeSVG('polyline', {
-        points: points.map(p => p.x + ',' + p.y).join(' '),
-        fill: 'none', stroke: '#6c63ff', 'stroke-width': 2.5, 'stroke-linejoin': 'round'
-      }));
-
-      // Dots
-      points.forEach((p, i) => {
-        const circle = makeSVG('circle', { cx: p.x, cy: p.y, r: 4, fill: '#6c63ff', style: 'cursor:pointer' });
-        circle.addEventListener('mouseenter', (e) => {
-          tooltip.style.display = 'block';
-          tooltip.textContent = p.w.label + ': ' + fmt(Math.round(p.w.volume));
-        });
-        circle.addEventListener('mousemove', (e) => {
-          tooltip.style.left = e.pageX + 10 + 'px';
-          tooltip.style.top = e.pageY - 30 + 'px';
-        });
-        circle.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
-        svg.appendChild(circle);
-      });
-
-      // X-axis labels (show every Nth to avoid overlap)
-      const step = Math.max(1, Math.floor(weeks.length / 12));
-      points.forEach((p, i) => {
-        if (i % step !== 0 && i !== points.length - 1) return;
+      // X-axis labels
+      const step = Math.max(1, Math.floor(dates.length / 12));
+      dates.forEach((d, i) => {
+        if (i % step !== 0 && i !== dates.length - 1) return;
+        const x = xPos(i);
         const txt = makeSVG('text', {
-          x: p.x, y: H - pad.b + 18, 'text-anchor': 'middle', fill: '#676788', 'font-size': '10',
-          transform: `rotate(-35, ${p.x}, ${H - pad.b + 18})`
+          x: x, y: H - pad.b + 18, 'text-anchor': 'middle', fill: '#676788', 'font-size': '10',
+          transform: `rotate(-35, ${x}, ${H - pad.b + 18})`
         });
-        txt.textContent = p.w.label;
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        txt.textContent = months[d.getMonth()] + ' ' + d.getDate();
+        svg.appendChild(txt);
+      });
+
+      // Legend (top-right corner inside plot area)
+      const legendX = W - pad.r - 10;
+      const legendY = pad.t + 10;
+      groups.forEach((g, i) => {
+        const y = legendY + i * 22;
+        svg.appendChild(makeSVG('rect', { x: legendX - 50, y: y - 10, width: 12, height: 12, rx: 4, fill: colors[g] }));
+        const txt = makeSVG('text', { x: legendX - 34, y: y, fill: '#676788', 'font-size': '12', 'font-weight': '600' });
+        txt.textContent = g;
         svg.appendChild(txt);
       });
 
@@ -817,7 +918,7 @@
       wrap.innerHTML = sessions.map((s, idx) => {
         const exNames = [...new Set(s.exercises.map(e => e.exercise))];
         const tableRows = s.exercises.map(e =>
-          `<tr><td>${e.exercise}</td><td>${e.weight ? e.weight + ' lbs' : 'BW'}</td><td>${e.reps || '-'}</td><td>${fmt(Math.round(e.volume))} lbs</td></tr>`
+          `<tr><td>${e.exercise}</td><td>${e.set}</td><td>${e.weight ? e.weight + ' lbs' : 'BW'}</td><td>${e.reps || '-'}</td><td>${fmt(Math.round(e.volume))} lbs</td></tr>`
         ).join('');
         return `<div class="session-card" onclick="this.querySelector('.session-card__details').classList.toggle('open')">
           <div class="session-card__header">
@@ -827,10 +928,11 @@
           <div class="session-card__stats">
             <span>Volume: ${fmt(Math.round(s.volume))} lbs</span>
             <span>${exNames.length} exercises</span>
+            <span>${s.sets} sets</span>
           </div>
           <div class="session-card__details">
             <table>
-              <thead><tr><th>Exercise</th><th>Weight</th><th>Reps</th><th>Volume</th></tr></thead>
+              <thead><tr><th>Exercise</th><th>Set #</th><th>Weight</th><th>Reps</th><th>Volume</th></tr></thead>
               <tbody>${tableRows}</tbody>
             </table>
           </div>
