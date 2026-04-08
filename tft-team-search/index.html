@@ -3,14 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TFT Team Search</title>
+  <title>TFT Team Search · Yousef Eddin</title>
+  <link rel="icon" type="image/png" href="../Me.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="container">
-      <h1>TFT Team Search</h1>
-      <p class="muted">Filter by level and what you already have. Results are ranked by closest-to-complete.</p>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand__title">
+          <a href="../index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist & Analyst</p>
+      </div>
+      <div class="header-cta">
+        <a class="btn btn--sm" href="../projects.html">&larr; Back to Projects</a>
+        <a class="btn btn--sm btn--ghost" href="../index.html">Home</a>
+      </div>
     </div>
   </header>
 
@@ -23,13 +35,15 @@
         <select id="levelSelect" class="select"></select>
       </div>
 
+      <div id="champCount" class="champ-count"></div>
+
       <hr class="sep" />
 
       <h2>What do you already have?</h2>
 
       <div class="row">
         <label for="champSearch" class="label">Search champions</label>
-        <input id="champSearch" class="input" type="text" placeholder="Type to filter champions…" />
+        <input id="champSearch" class="input" type="text" placeholder="Type to filter champions..." />
       </div>
 
       <div class="row">
@@ -51,7 +65,7 @@
           <input id="minOverlap" type="range" min="0" max="10" value="0" />
           <span id="minOverlapLabel" class="pill">0</span>
         </div>
-        <p class="muted small">Show comps where you already own at least this many units in the comp.</p>
+        <p class="muted small">Show comps where you already own at least this many units.</p>
       </div>
 
       <div class="row">
@@ -63,15 +77,9 @@
         </select>
       </div>
 
-      <div class="row">
+      <div class="row" style="display:flex;gap:10px;">
         <button id="clearOwned" class="btn">Clear selections</button>
-      </div>
-
-      <div class="row">
-        <div class="muted small">
-          Tip: If opening this file directly (file://), your browser may block fetching JSON.
-          Use a local web server (instructions below).
-        </div>
+        <button id="showAll" class="btn btn--ghost">Show All / Reset</button>
       </div>
     </section>
 
@@ -82,12 +90,21 @@
         <div id="resultCount" class="pill">0</div>
       </div>
 
+      <div id="resultsSummary" class="results-summary"></div>
       <div id="results" class="results"></div>
     </section>
   </main>
 
-  <footer class="footer container muted small">
-    Data loaded from <code>best_levels_2_5.json</code>.
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="contact">
+        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
+        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
+        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      </div>
+      <p>&copy; <span id="year"></span> Yousef Eddin &middot; Built with vanilla HTML &amp; CSS</p>
+    </div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 
   <script src="app.js"></script>

@@ -16,8 +16,11 @@ const minOverlap = document.getElementById("minOverlap");
 const minOverlapLabel = document.getElementById("minOverlapLabel");
 const sortMode = document.getElementById("sortMode");
 const clearOwned = document.getElementById("clearOwned");
+const showAll = document.getElementById("showAll");
 const resultsEl = document.getElementById("results");
 const resultCount = document.getElementById("resultCount");
+const resultsSummary = document.getElementById("resultsSummary");
+const champCount = document.getElementById("champCount");
 
 // ---- Helpers ----
 function uniq(arr) {
@@ -25,7 +28,6 @@ function uniq(arr) {
 }
 
 function toLevelKeys(levelsObj) {
-  // keys might be "2", "3", ...; sort numerically when possible
   return Object.keys(levelsObj).sort((a,b) => Number(a) - Number(b));
 }
 
@@ -48,7 +50,7 @@ function chip(text, onRemove) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.setAttribute("aria-label", `Remove ${text}`);
-  btn.textContent = "×";
+  btn.textContent = "\u00d7";
   btn.addEventListener("click", onRemove);
 
   el.appendChild(btn);
@@ -81,6 +83,12 @@ function renderLevels() {
 
   currentLevel = keys[0] ?? null;
   levelSelect.value = currentLevel ?? "";
+  updateChampCount();
+}
+
+function updateChampCount() {
+  if (!champCount) return;
+  champCount.innerHTML = `<strong>${allChamps.length}</strong> champions available at this level`;
 }
 
 // ---- Render: Champion picker ----
@@ -88,10 +96,18 @@ function renderChampionPicker() {
   const q = normalize(champSearch.value);
   const filtered = allChamps.filter(c => normalize(c).includes(q));
 
+  // Sort: selected champions first, then alphabetical
+  const sorted = filtered.slice().sort((a, b) => {
+    const aOwned = owned.has(a) ? 0 : 1;
+    const bOwned = owned.has(b) ? 0 : 1;
+    if (aOwned !== bOwned) return aOwned - bOwned;
+    return a.localeCompare(b);
+  });
+
   champList.innerHTML = "";
-  for (const name of filtered) {
+  for (const name of sorted) {
     const row = document.createElement("label");
-    row.className = "pick";
+    row.className = "pick" + (owned.has(name) ? " selected-champ" : "");
 
     const cb = document.createElement("input");
     cb.type = "checkbox";
@@ -100,6 +116,7 @@ function renderChampionPicker() {
       if (cb.checked) owned.add(name);
       else owned.delete(name);
       renderSelected();
+      renderChampionPicker();
       renderResults();
     });
 
@@ -166,7 +183,6 @@ function sortScored(scored, mode) {
       (b.bronzeCount - a.bronzeCount)
     );
   } else {
-    // closest (default)
     arr.sort((a,b) =>
       (b.ownedCount - a.ownedCount) ||
       (a.missingCount - b.missingCount) ||
@@ -196,6 +212,23 @@ function renderResults() {
 
   resultsEl.innerHTML = "";
 
+  // Empty state when no champions selected and min overlap is 0
+  if (owned.size === 0 && min === 0) {
+    resultsSummary.innerHTML = "";
+    resultsEl.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-icon">&#9813;</div>
+        <p>Select champions above to find the best comps for your board</p>
+        <p class="small muted">${comps.length} comps available at Level ${currentLevel}</p>
+      </div>
+    `;
+    resultCount.textContent = String(comps.length);
+    return;
+  }
+
+  // Summary line
+  resultsSummary.innerHTML = `<strong>${sorted.length}</strong> comp${sorted.length !== 1 ? 's' : ''} found`;
+
   for (const s of sorted) {
     const c = s.comp;
 
@@ -207,14 +240,13 @@ function renderResults() {
 
     const title = document.createElement("div");
     title.className = "card-title";
-    title.textContent = `Level ${currentLevel} — ${s.ownedCount}/${s.teamSize} owned`;
+    title.textContent = `Level ${currentLevel} \u2014 ${s.ownedCount}/${s.teamSize} owned`;
 
     const sub = document.createElement("div");
     sub.className = "card-sub";
-    // show metadata if present
     const maxCost = c.max_cost_allowed != null ? `Max cost: ${c.max_cost_allowed}` : null;
     const size = c.team_size != null ? `Team size: ${c.team_size}` : null;
-    sub.textContent = [size, maxCost].filter(Boolean).join(" • ");
+    sub.textContent = [size, maxCost].filter(Boolean).join(" \u2022 ");
 
     head.appendChild(title);
     head.appendChild(sub);
@@ -223,9 +255,9 @@ function renderResults() {
     const kv = document.createElement("div");
     kv.className = "kv";
 
-    const addKV = (kText, badges) => {
+    const addKV = (kText, badges, bold) => {
       const k = document.createElement("div");
-      k.className = "k";
+      k.className = "k" + (bold ? " bold" : "");
       k.textContent = kText;
 
       const v = document.createElement("div");
@@ -237,11 +269,11 @@ function renderResults() {
     };
 
     addKV("Team", s.team.map(u => badge(u)));
-    addKV("Owned", s.team.filter(u => owned.has(u)).map(u => badge(u, "good")));
-    addKV("Missing", s.missing.map(u => badge(u, "miss")));
+    addKV(`Owned (${s.ownedCount})`, s.team.filter(u => owned.has(u)).map(u => badge(u, "good")), true);
+    addKV(`Missing (${s.missingCount})`, s.missing.map(u => badge(u, "miss")));
 
     const bronzeTraits = Array.isArray(c.bronze_traits) ? c.bronze_traits : [];
-    addKV("Bronze traits", bronzeTraits.length ? bronzeTraits.map(t => badge(t)) : [badge("—")]);
+    addKV("Bronze traits", bronzeTraits.length ? bronzeTraits.map(t => badge(t)) : [badge("\u2014")]);
 
     card.appendChild(head);
     card.appendChild(kv);
@@ -254,7 +286,6 @@ function renderResults() {
 // ---- Events ----
 levelSelect.addEventListener("change", () => {
   currentLevel = levelSelect.value;
-  // reset minOverlap to 0 when changing levels (optional)
   minOverlap.value = "0";
   minOverlapLabel.textContent = "0";
   renderResults();
@@ -277,6 +308,72 @@ clearOwned.addEventListener("click", () => {
   renderResults();
 });
 
+showAll.addEventListener("click", () => {
+  owned = new Set();
+  champSearch.value = "";
+  minOverlap.value = "0";
+  minOverlapLabel.textContent = "0";
+  sortMode.value = "closest";
+  renderSelected();
+  renderChampionPicker();
+  // Show all comps by temporarily bypassing empty state
+  if (!rawData || !currentLevel) return;
+  const comps = rawData.levels[currentLevel] || [];
+  const scored = comps.map(scoreComp);
+  const sorted = sortScored(scored, "closest");
+
+  resultsEl.innerHTML = "";
+  resultsSummary.innerHTML = `<strong>${sorted.length}</strong> comp${sorted.length !== 1 ? 's' : ''} found`;
+
+  for (const s of sorted) {
+    const c = s.comp;
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const head = document.createElement("div");
+    head.className = "card-head";
+
+    const title = document.createElement("div");
+    title.className = "card-title";
+    title.textContent = `Level ${currentLevel} \u2014 ${s.ownedCount}/${s.teamSize} owned`;
+
+    const sub = document.createElement("div");
+    sub.className = "card-sub";
+    const maxCost = c.max_cost_allowed != null ? `Max cost: ${c.max_cost_allowed}` : null;
+    const size = c.team_size != null ? `Team size: ${c.team_size}` : null;
+    sub.textContent = [size, maxCost].filter(Boolean).join(" \u2022 ");
+
+    head.appendChild(title);
+    head.appendChild(sub);
+
+    const kv = document.createElement("div");
+    kv.className = "kv";
+
+    const addKV = (kText, badges, bold) => {
+      const k = document.createElement("div");
+      k.className = "k" + (bold ? " bold" : "");
+      k.textContent = kText;
+      const v = document.createElement("div");
+      v.className = "v";
+      for (const b of badges) v.appendChild(b);
+      kv.appendChild(k);
+      kv.appendChild(v);
+    };
+
+    addKV("Team", s.team.map(u => badge(u)));
+    addKV(`Owned (${s.ownedCount})`, s.team.filter(u => owned.has(u)).map(u => badge(u, "good")), true);
+    addKV(`Missing (${s.missingCount})`, s.missing.map(u => badge(u, "miss")));
+    const bronzeTraits = Array.isArray(c.bronze_traits) ? c.bronze_traits : [];
+    addKV("Bronze traits", bronzeTraits.length ? bronzeTraits.map(t => badge(t)) : [badge("\u2014")]);
+
+    card.appendChild(head);
+    card.appendChild(kv);
+    resultsEl.appendChild(card);
+  }
+
+  resultCount.textContent = String(sorted.length);
+});
+
 // ---- Init ----
 async function init() {
   try {
@@ -284,7 +381,6 @@ async function init() {
     if (!res.ok) throw new Error(`Failed to load JSON: ${res.status} ${res.statusText}`);
     rawData = await res.json();
 
-    // Expect shape: { levels: { "2": [...], "3": [...], ... } }
     if (!rawData || typeof rawData !== "object" || !rawData.levels) {
       throw new Error("Unexpected JSON structure. Expected top-level { levels: { ... } }.");
     }
