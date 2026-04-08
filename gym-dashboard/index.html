@@ -76,6 +76,12 @@
     }
 
     /* Exercise tracker */
+    .exercise-filter-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
     .exercise-select {
       font-family: inherit;
       font-size: 1rem;
@@ -84,7 +90,6 @@
       border: 2px solid var(--brand);
       color: var(--text);
       background: #fff;
-      margin-bottom: 1rem;
       max-width: 100%;
       cursor: pointer;
     }
@@ -238,6 +243,9 @@
       .hero-stats {
         grid-template-columns: 1fr 1fr;
       }
+      .exercise-filter-row {
+        flex-direction: column;
+      }
       .exercise-meta {
         flex-direction: column;
       }
@@ -305,9 +313,17 @@
           <div class="dash-section">
             <h3 class="dash-section__title">Exercise Progress</h3>
             <div class="chart-container">
-              <select id="exercise-select" class="exercise-select">
-                <option value="">Select an exercise...</option>
-              </select>
+              <div class="exercise-filter-row">
+                <select id="muscle-group-select" class="exercise-select">
+                  <option value="All">All</option>
+                  <option value="Push">Push</option>
+                  <option value="Pull">Pull</option>
+                  <option value="Leg">Leg/Legs</option>
+                </select>
+                <select id="exercise-select" class="exercise-select">
+                  <option value="">Select an exercise...</option>
+                </select>
+              </div>
               <div id="exercise-chart-wrap" style="position:relative;"></div>
               <div id="exercise-meta" class="exercise-meta"></div>
             </div>
@@ -622,17 +638,42 @@
     }
 
     function renderExerciseTracker(rows) {
-      const names = [...new Set(rows.map(r => r.exercise))].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
-      const select = $('#exercise-select');
-      names.forEach(n => {
-        const opt = document.createElement('option');
-        opt.value = n;
-        opt.textContent = n;
-        select.appendChild(opt);
+      const muscleSelect = $('#muscle-group-select');
+      const exerciseSelect = $('#exercise-select');
+
+      // Build a map: normalized dayType -> Set of exercise names
+      // "Leg" and "Legs" both map to the "Leg" group
+      const groupExercises = { All: new Set(), Push: new Set(), Pull: new Set(), Leg: new Set() };
+      rows.forEach(r => {
+        groupExercises.All.add(r.exercise);
+        const dt = r.dayType.charAt(0).toUpperCase() + r.dayType.slice(1).toLowerCase();
+        if (dt === 'Push') groupExercises.Push.add(r.exercise);
+        else if (dt === 'Pull') groupExercises.Pull.add(r.exercise);
+        else if (dt === 'Leg' || dt === 'Legs') groupExercises.Leg.add(r.exercise);
       });
 
-      select.addEventListener('change', () => {
-        const name = select.value;
+      function populateExercises(group) {
+        const names = [...groupExercises[group]].sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
+        exerciseSelect.innerHTML = '<option value="">Select an exercise...</option>';
+        names.forEach(n => {
+          const opt = document.createElement('option');
+          opt.value = n;
+          opt.textContent = n;
+          exerciseSelect.appendChild(opt);
+        });
+      }
+
+      // Initial population
+      populateExercises('All');
+
+      muscleSelect.addEventListener('change', () => {
+        populateExercises(muscleSelect.value);
+        $('#exercise-chart-wrap').innerHTML = '';
+        $('#exercise-meta').innerHTML = '';
+      });
+
+      exerciseSelect.addEventListener('change', () => {
+        const name = exerciseSelect.value;
         if (!name) { $('#exercise-chart-wrap').innerHTML = ''; $('#exercise-meta').innerHTML = ''; return; }
         const hist = exerciseHistory(rows, name);
         renderExerciseChart(hist);
