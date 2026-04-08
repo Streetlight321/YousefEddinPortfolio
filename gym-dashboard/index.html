@@ -305,7 +305,7 @@
 
           <!-- Weekly Volume Chart -->
           <div class="dash-section">
-            <h3 class="dash-section__title">Weekly Volume</h3>
+            <h3 class="dash-section__title">Weekly Volume (lbs) + BW Reps</h3>
             <div class="chart-container" id="weekly-chart-wrap" style="position:relative;"></div>
           </div>
 
@@ -418,7 +418,8 @@
         const weight = parseWeight(r['Weight'] || '');
         const reps = parseReps(r['# of Reps'] || '');
         const volume = parseVolume(r['Volume'] || '', weight, reps);
-        return { date, dateStr, dayType, exercise, set, weight, reps, volume };
+        const isBodyweight = weight === 0;
+        return { date, dateStr, dayType, exercise, set, weight, reps, volume, isBodyweight };
       }).filter(r => r.date !== null)
         .sort((a, b) => a.date - b.date);
     }
@@ -485,7 +486,7 @@
         const label = monthNames[d.getMonth()] + ' W' + Math.ceil(d.getDate() / 7);
         const key = d.getFullYear() + '-' + String(weekNum).padStart(2, '0');
         if (!weeks[key]) weeks[key] = { label, volume: 0, key };
-        weeks[key].volume += r.volume;
+        weeks[key].volume += r.isBodyweight ? r.reps : r.volume;
       });
       return Object.values(weeks).sort((a, b) => a.key.localeCompare(b.key));
     }
@@ -496,7 +497,7 @@
         const dt = r.dayType.charAt(0).toUpperCase() + r.dayType.slice(1).toLowerCase();
         if (dt === 'Push' || dt === 'Pull' || dt === 'Leg' || dt === 'Legs') {
           const key = dt === 'Legs' ? 'Leg' : dt;
-          groups[key] += r.volume;
+          groups[key] += r.isBodyweight ? r.reps : r.volume;
         }
       });
       return groups;
@@ -521,8 +522,24 @@
     }
 
     function exerciseHistory(rows, name) {
+      const matched = rows.filter(r => r.exercise.toLowerCase() === name.toLowerCase());
+      const isBW = matched.length > 0 && matched.every(r => r.isBodyweight);
+      if (isBW) {
+        // Group by date, compute average reps per session
+        const byDate = {};
+        matched.forEach(r => {
+          if (r.reps <= 0) return;
+          const key = r.date.toDateString();
+          if (!byDate[key]) byDate[key] = { date: r.date, total: 0, count: 0 };
+          byDate[key].total += r.reps;
+          byDate[key].count++;
+        });
+        return Object.values(byDate)
+          .sort((a, b) => a.date - b.date)
+          .map(d => ({ date: d.date, value: Math.round(d.total / d.count), isBodyweight: true }));
+      }
       return rows.filter(r => r.exercise.toLowerCase() === name.toLowerCase() && r.weight > 0)
-                  .map(r => ({ date: r.date, weight: r.weight }));
+                  .map(r => ({ date: r.date, value: r.weight, isBodyweight: false }));
     }
 
     function sessionsGrouped(rows) {
@@ -612,7 +629,7 @@
         const circle = makeSVG('circle', { cx: p.x, cy: p.y, r: 4, fill: '#6c63ff', style: 'cursor:pointer' });
         circle.addEventListener('mouseenter', (e) => {
           tooltip.style.display = 'block';
-          tooltip.textContent = p.w.label + ': ' + fmt(Math.round(p.w.volume)) + ' lbs';
+          tooltip.textContent = p.w.label + ': ' + fmt(Math.round(p.w.volume));
         });
         circle.addEventListener('mousemove', (e) => {
           tooltip.style.left = e.pageX + 10 + 'px';
@@ -690,11 +707,14 @@
         return;
       }
 
+      const isBW = hist[0].isBodyweight;
+      const unit = isBW ? ' reps' : ' lbs';
+
       const W = 900, H = 260, pad = { t: 20, r: 30, b: 50, l: 60 };
       const plotW = W - pad.l - pad.r;
       const plotH = H - pad.t - pad.b;
-      const maxW = Math.max(...hist.map(h => h.weight)) * 1.15;
-      const minW = Math.min(...hist.map(h => h.weight)) * 0.85;
+      const maxW = Math.max(...hist.map(h => h.value)) * 1.15;
+      const minW = Math.min(...hist.map(h => h.value)) * 0.85;
       const range = maxW - minW || 1;
 
       const svg = makeSVG('svg', { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'xMidYMid meet' });
@@ -710,7 +730,7 @@
 
       const points = hist.map((h, i) => {
         const x = pad.l + (plotW * i / (hist.length - 1 || 1));
-        const y = pad.t + plotH - (plotH * (h.weight - minW) / range);
+        const y = pad.t + plotH - (plotH * (h.value - minW) / range);
         return { x, y, h };
       });
 
@@ -723,7 +743,7 @@
         const circle = makeSVG('circle', { cx: p.x, cy: p.y, r: 4, fill: '#ff7ac0', style: 'cursor:pointer' });
         circle.addEventListener('mouseenter', () => {
           tooltip.style.display = 'block';
-          tooltip.textContent = formatDate(p.h.date) + ': ' + p.h.weight + ' lbs';
+          tooltip.textContent = formatDate(p.h.date) + ': ' + p.h.value + unit;
         });
         circle.addEventListener('mousemove', (e) => {
           tooltip.style.left = e.pageX + 10 + 'px';
@@ -739,19 +759,23 @@
     function renderExerciseMeta(hist) {
       const wrap = $('#exercise-meta');
       if (!hist.length) { wrap.innerHTML = ''; return; }
-      const maxW = Math.max(...hist.map(h => h.weight));
-      const recent = hist[hist.length - 1].weight;
+      const isBW = hist[0].isBodyweight;
+      const unit = isBW ? ' reps' : ' lbs';
+      const maxLabel = isBW ? 'Max Reps' : 'Max';
+      const recentLabel = isBW ? 'Recent Reps' : 'Recent';
+      const maxV = Math.max(...hist.map(h => h.value));
+      const recent = hist[hist.length - 1].value;
       let trend = '&rarr;';
       let cls = 'trend-flat';
       if (hist.length >= 3) {
-        const last3 = hist.slice(-3).map(h => h.weight);
+        const last3 = hist.slice(-3).map(h => h.value);
         const avg = (last3[0] + last3[1] + last3[2]) / 3;
         if (last3[2] > avg * 1.02) { trend = '&uarr;'; cls = 'trend-up'; }
         else if (last3[2] < avg * 0.98) { trend = '&darr;'; cls = 'trend-down'; }
       }
       wrap.innerHTML =
-        `<div class="exercise-meta__item"><strong>Max:</strong> ${maxW} lbs</div>
-         <div class="exercise-meta__item"><strong>Recent:</strong> ${recent} lbs</div>
+        `<div class="exercise-meta__item"><strong>${maxLabel}:</strong> ${maxV}${unit}</div>
+         <div class="exercise-meta__item"><strong>${recentLabel}:</strong> ${recent}${unit}</div>
          <div class="exercise-meta__item"><strong>Trend:</strong> <span class="${cls}">${trend}</span></div>`;
     }
 
@@ -780,7 +804,7 @@
 
         // Value
         const val = makeSVG('text', { x: pad.l + barW + 10, y: y + barH / 2 + 5, 'font-size': '13', 'font-weight': '600', fill: '#676788' });
-        val.textContent = fmt(Math.round(groups[g])) + ' lbs';
+        val.textContent = fmt(Math.round(groups[g]));
         svg.appendChild(val);
       });
 
@@ -830,8 +854,8 @@
         const exercises = [...new Set(rows.map(r => r.exercise))];
         console.log('Parsed rows:', rows.length, 'Unique exercises:', exercises.length);
 
-        // Filter rows where both weight and volume are 0 for charting
-        const chartRows = rows.filter(r => !(r.weight === 0 && r.volume === 0));
+        // Include rows that have weight OR reps (so bodyweight exercises are kept)
+        const chartRows = rows.filter(r => r.weight > 0 || r.reps > 0);
 
         $('#loading').style.display = 'none';
         $('#dashboard').style.display = 'block';
