@@ -222,22 +222,19 @@ function renderResults() {
 
   resultsEl.innerHTML = "";
 
-  // Empty state when no champions selected and min overlap is 0
-  if (owned.size === 0 && min === 0) {
-    resultsSummary.innerHTML = "";
+  // Summary line
+  resultsSummary.innerHTML = `<strong>${sorted.length}</strong> comp${sorted.length !== 1 ? 's' : ''} found`;
+
+  if (sorted.length === 0) {
     resultsEl.innerHTML = `
       <div class="empty-state">
         <div class="empty-icon">&#9813;</div>
-        <p>Select champions above to find the best comps for your board</p>
-        <p class="small muted">${comps.length} comps available at Level ${currentLevel}</p>
+        <p>No comps match your current filters</p>
       </div>
     `;
-    resultCount.textContent = String(comps.length);
+    resultCount.textContent = "0";
     return;
   }
-
-  // Summary line
-  resultsSummary.innerHTML = `<strong>${sorted.length}</strong> comp${sorted.length !== 1 ? 's' : ''} found`;
 
   for (const s of sorted) {
     const c = s.comp;
