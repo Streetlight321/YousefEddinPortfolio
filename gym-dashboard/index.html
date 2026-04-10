@@ -552,7 +552,8 @@
         if (!map[key]) map[key] = { date: r.date, dayType: r.dayType, exercises: [], volume: 0, sets: 0 };
         map[key].exercises.push(r);
         map[key].volume += r.volume;
-        map[key].sets = (map[key].sets || 0) + 1;
+        const setCount = (typeof r.set === 'number' && r.set > 0) ? r.set : 1;
+        map[key].sets = (map[key].sets || 0) + setCount;
       });
       return Object.values(map).sort((a, b) => b.date - a.date);
     }
