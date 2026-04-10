@@ -42,6 +42,16 @@ function flattenTeams(levelsObj) {
   return teams;
 }
 
+function getChampsForLevel(level) {
+  if (!rawData || !rawData.levels || level == null) return [];
+  const comps = rawData.levels[level] || [];
+  const names = [];
+  for (const comp of comps) {
+    if (Array.isArray(comp.team)) names.push(...comp.team);
+  }
+  return uniq(names).sort((a, b) => a.localeCompare(b));
+}
+
 function chip(text, onRemove) {
   const el = document.createElement("span");
   el.className = "chip";
@@ -288,6 +298,19 @@ levelSelect.addEventListener("change", () => {
   currentLevel = levelSelect.value;
   minOverlap.value = "0";
   minOverlapLabel.textContent = "0";
+
+  // Refresh champ list for the newly selected level
+  allChamps = getChampsForLevel(currentLevel);
+  updateChampCount();
+
+  // Drop any owned champs that don't exist at this level
+  const validSet = new Set(allChamps);
+  for (const name of Array.from(owned)) {
+    if (!validSet.has(name)) owned.delete(name);
+  }
+
+  renderSelected();
+  renderChampionPicker();
   renderResults();
 });
 
@@ -385,9 +408,9 @@ async function init() {
       throw new Error("Unexpected JSON structure. Expected top-level { levels: { ... } }.");
     }
 
-    allChamps = uniq(flattenTeams(rawData.levels)).sort((a,b) => a.localeCompare(b));
-
     renderLevels();
+    allChamps = getChampsForLevel(currentLevel);
+    updateChampCount();
     renderSelected();
     renderChampionPicker();
     renderResults();
