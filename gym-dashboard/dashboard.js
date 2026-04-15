@@ -523,8 +523,7 @@
     wrap.innerHTML =
       `<div class="exercise-meta__item"><strong>${maxLabel}:</strong> ${maxV}${unit}</div>
        <div class="exercise-meta__item"><strong>${recentLabel}:</strong> ${recent}${unit}</div>
-       <div class="exercise-meta__item"><strong>Trend:</strong> <span class="${cls}">${trend}</span></div>` +
-      (isPR ? `<span class="pr-badge" title="Most recent session ties the all-time max">🏆 PR</span>` : '');
+       <div class="exercise-meta__item"><strong>Trend:</strong> <span class="${cls}">${trend}</span></div>`;
   }
 
   /* ---------- Render: Muscle chart ---------- */

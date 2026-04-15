@@ -204,7 +204,7 @@
 
     // Copy button
     const copyBtn = el('button', {
-      type: 'button', class: 'copy-btn', textContent: '📋 Copy team',
+      type: 'button', class: 'copy-btn', textContent: 'Copy team',
       'aria-label': `Copy team for Level ${currentLevel} comp`,
       on: { click: () => copyTeamToClipboard(s.team, copyBtn) }
     });
@@ -257,13 +257,13 @@
         ta.remove();
       }
       const original = btn.textContent;
-      btn.textContent = '✓ Copied';
+      btn.textContent = 'Copied';
       btn.classList.add('is-copied');
       setTimeout(() => { btn.textContent = original; btn.classList.remove('is-copied'); }, 1500);
     } catch (err) {
       console.error('Copy failed', err);
       btn.textContent = 'Copy failed';
-      setTimeout(() => { btn.textContent = '📋 Copy team'; }, 1500);
+      setTimeout(() => { btn.textContent = 'Copy team'; }, 1500);
     }
   }
 
@@ -288,7 +288,6 @@
     if (sorted.length === 0) {
       resultsEl.innerHTML = `
         <div class="empty-state">
-          <div class="empty-icon">♛</div>
           <p>No comps match your current filters</p>
         </div>`;
       resultCount.textContent = '0';
