@@ -3,120 +3,125 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yousef Eddin · Portfolio</title>    
+  <title>Yousef Eddin · Data Scientist & Analyst</title>
   <link rel="icon" type="image/png" href="Me.png">
 
-  <!-- Optional: nice, legible font; safe to remove if offline -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Portfolio of Yousef Eddin — Data Science & Analyst." />
+  <meta name="description" content="Portfolio of Yousef Eddin — Data Scientist & Analyst. Projects in machine learning, dashboards, and data analysis." />
 </head>
 <body>
 
-  <!-- ======= Header / Hero ======= -->
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <div class="brand">
-        <h1 class="brand__title">Yousef Eddin</h1>
-        <p class="brand__tagline">Data Scientist & Analyst</p>
+        <h1 class="brand__title">
+          <a href="index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
       </div>
 
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
 
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </nav>
 
       <div class="header-cta">
-        <!-- changed from #projects to projects.html -->
-        <a class="btn" href="projects.html">View my work!</a>
-        <a class="btn btn--ghost" href="Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="header-icon" href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21h-4V9z"/></svg>
+        </a>
+        <a class="header-icon" href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="btn btn--sm btn--ghost" href="Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- ======= Intro ======= -->
-    <section class="intro section">
+    <!-- ======= Intro / Hero ======= -->
+    <section class="intro section" aria-labelledby="intro-heading">
       <div class="container">
         <div class="intro__grid">
-          <div>
-            <h2>Hi! I'm Yousef!</h2>
-            <p>
-              I’m a senior at the University of North Carolina at Charlotte. When I’m not cooking or at the gym, I’m usually working on some ridiculous side project that started as a joke and somehow spiraled into actual code. This portfolio is my collection of those experiments that made it past the “chaos” phase.
+          <div data-reveal="left">
+            <span class="intro__eyebrow">Available for roles · 2026</span>
+            <h2 id="intro-heading">
+              Hi, I'm <span class="gradient">Yousef</span>.
+            </h2>
+            <p class="intro__tagline" data-typewriter="I turn messy data into decisions.|I automate the boring stuff.|I ship side projects that work."></p>
+            <p class="intro__lead">
+              Senior at UNC Charlotte studying data science. When I'm not cooking or at the gym, I'm usually deep in a side project that started as a joke and somehow became actual code. This portfolio is the collection that survived the chaos phase.
             </p>
-
-            <!-- Optional: a small link to the hub -->
-            <ul class="quick-links">
-              <li><a href="projects.html">Browse all projects →</a></li>
-            </ul>
           </div>
-          <aside class="intro__aside">
-            <img src="devv.gif" alt="Developer animated illustration" class="intro__gif">
+          <aside class="intro__aside" data-reveal="right">
+            <img src="devv.gif" alt="Animated developer illustration" class="intro__gif" loading="lazy" width="480" height="360">
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- ======= Projects section REMOVED from home page ======= -->
-    <!-- (now lives in projects.html) -->
-
     <!-- ======= Experience ======= -->
-    <section id="experience" class="section">
-  <div class="container">
-    <div class="section__header">
-      <h2 class="section__title">Experience</h2>
-      <p class="section__subtitle">Roles where I delivered analytics with business impact.</p>
-    </div>
+    <section id="experience" class="section section--alt" aria-labelledby="exp-heading">
+      <div class="container">
+        <div class="section__header" data-reveal>
+          <h2 class="section__title" id="exp-heading">Experience</h2>
+          <p class="section__subtitle">Roles where I delivered analytics with business impact.</p>
+        </div>
 
-    <ul class="timeline">
+        <ul class="timeline">
+          <li class="timeline__item" data-reveal>
+            <h3>Supply Chain Analyst Intern — ABB</h3>
+            <p class="timeline__meta">May 2025 – Aug 2025</p>
+            <ul class="timeline__bullets">
+              <li>Streamlined analytics workflows using Power BI, Python, and Excel to enhance decision-making speeds.</li>
+              <li>Automated reporting with Python and Power BI to improve consistency and free stakeholder capacity.</li>
+              <li>Developed a Python Selenium scraper integrated with GitHub Actions for automated price tracking.</li>
+            </ul>
+          </li>
 
-      <li class="timeline__item">
-        <h3>Supply Chain Analyst Intern — ABB</h3>
-        <p class="timeline__meta">May 2025 – Aug 2025</p>
-        <ul class="timeline__bullets">
-          <li>Streamlined analytics workflows using Power BI, Python, and Excel to enhance decision making speeds.</li>
-          <li>Automated reporting with Python and Power BI to improve consistency and free stakeholder capacity.</li>
-          <li>Developed a Python Selenium scraper integrated with GitHub Actions for automated price tracking.</li>
+          <li class="timeline__item" data-reveal>
+            <h3>Data Analyst Intern — 3D Systems</h3>
+            <p class="timeline__meta">May 2024 – Aug 2024</p>
+            <ul class="timeline__bullets">
+              <li>Developed machine-learning models to optimize inventory and forecast part-usage trends.</li>
+              <li>Integrated data from Oracle and Salesforce using SQL and Excel automations.</li>
+              <li>Built executive dashboards visualizing revenue, lead times, and production metrics.</li>
+            </ul>
+          </li>
+
+          <li class="timeline__item" data-reveal>
+            <h3>App Developer Lab Facilitator — Central Piedmont Community College</h3>
+            <p class="timeline__meta">Aug 2024 – Present</p>
+            <ul class="timeline__bullets">
+              <li>Supported students in Python, SQL, SAS, Excel, Java, Git, and data structures.</li>
+              <li>Debugged student projects and explained concepts through hands-on examples.</li>
+              <li>Created walkthroughs to help students understand programming fundamentals.</li>
+            </ul>
+          </li>
         </ul>
-      </li>
-
-      <li class="timeline__item">
-        <h3>Data Analyst Intern — 3D Systems</h3>
-        <p class="timeline__meta">May 2024 – Aug 2024</p>
-        <ul class="timeline__bullets">
-          <li>Developed machine learning models to optimize inventory and forecast part usage trends.</li>
-          <li>Integrated data from Oracle and Salesforce using SQL + Excel automations.</li>
-          <li>Built dashboards for executives that visualized revenue, lead times, and production metrics.</li>
-        </ul>
-      </li>
-
-      <li class="timeline__item">
-        <h3>App Developer Lab Facilitator — Central Piedmont Community College</h3>
-        <p class="timeline__meta">Aug 2024 – Present</p>
-        <ul class="timeline__bullets">
-          <li>Supported students in Python, SQL, SAS, Excel, Java, Git, and data structures.</li>
-          <li>Debugged student projects and explained concepts through hands-on examples.</li>
-          <li>Created walkthroughs to help students understand programming fundamentals.</li>
-        </ul>
-      </li>
-
-    </ul>
-  </div>
-</section>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <div class="contact">
-        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
-        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn">in/ yeddin</a>
+        <a href="tel:17044941541" aria-label="Phone">☎ (704) 494-1541</a>
       </div>
-      <p>© <span id="year"></span> Yousef Eddin · Built with vanilla HTML &amp; CSS</p>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
     </div>
-
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
   </footer>
+
+  <script src="site.js" defer></script>
 </body>
 </html>

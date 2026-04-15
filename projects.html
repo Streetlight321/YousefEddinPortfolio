@@ -7,204 +7,199 @@
   <link rel="icon" type="image/png" href="Me.png">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-  <meta name="description" content="Project portfolio of Yousef Eddin — Data Science & Analyst." />
+  <meta name="description" content="Project portfolio of Yousef Eddin — data science, dashboards, and machine-learning experiments." />
 </head>
 <body>
 
-  <!-- Reuse same header -->
   <header class="site-header" role="banner">
     <div class="container header-inner">
       <div class="brand">
         <h1 class="brand__title">
-        <a href="index.html" class="brand__link">Yousef Eddin</a>
-      </h1>
-        <p class="brand__tagline">Data Scientist & Analyst</p>
+          <a href="index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
       </div>
 
-      <nav class="nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html" aria-current="page">Projects</a></li>
         </ul>
       </nav>
 
       <div class="header-cta">
-        <a class="btn" href="index.html#experience">Experience</a>
-        <a class="btn btn--ghost" href="Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="header-icon" href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21h-4V9z"/></svg>
+        </a>
+        <a class="header-icon" href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="btn btn--sm btn--ghost" href="Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <!-- ======= Project Hub ======= -->
-    <section class="section section--alt">
+    <section class="section section--alt" aria-labelledby="hub-heading">
       <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Project Hub</h2>
+        <div class="section__header" data-reveal>
+          <h2 class="section__title" id="hub-heading">Project Hub</h2>
           <p class="section__subtitle">
             A collection of data projects where I build models, explore datasets, and ship analyses.
           </p>
         </div>
 
         <div class="cards">
-  <article class="card">
-    <div class="card__head">
-      <h3>Defeating ALPR</h3>
-      <span class="badge badge--capstone">Capstone</span>
-    </div>
-    <p class="card__blurb">
-      Data Science capstone project studying adversarial robustness of Automatic License Plate Recognition systems using evolutionary optimization.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> ALPR systems track vehicles and share data with law enforcement regardless of suspicion.</li>
-      <li><strong>Approach:</strong> Built a perturbation pipeline and evolved minimally visible attacks using NEAT machine learning.</li>
-      <li><strong>Findings:</strong> Achieved 100% evasion; effectiveness is plate-specific with no universal pattern.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="https://github.com/Streetlight321/Defeating-ALPR">View project</a>
-    </div>
-    <div class="card__meta">
-      <span>Computer Vision</span>
-      <span>Machine Learning</span>
-      <span>NEAT</span>
-      <span>Python</span>
-      <span>Privacy</span>
-    </div>
-  </article>
+          <article class="card card--capstone" data-reveal>
+            <div class="card__head">
+              <h3>Defeating ALPR</h3>
+            </div>
+            <p class="card__blurb">
+              Data-science capstone studying adversarial robustness of Automatic License Plate Recognition systems using evolutionary optimization.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> ALPR systems track vehicles and share data with law enforcement regardless of suspicion.</li>
+              <li><strong>Approach:</strong> Built a perturbation pipeline and evolved minimally visible attacks using NEAT.</li>
+              <li><strong>Findings:</strong> Achieved 100% evasion; effectiveness is plate-specific with no universal pattern.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="https://github.com/Streetlight321/Defeating-ALPR" target="_blank" rel="noopener">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Computer Vision</span>
+              <span>Machine Learning</span>
+              <span>NEAT</span>
+              <span>Python</span>
+              <span>Privacy</span>
+            </div>
+          </article>
 
-  <article class="card">
-    <div class="card__head">
-      <h3>Gym Analytics Dashboard</h3>
-    </div>
-    <p class="card__blurb">
-      A live, data-driven dashboard tracking my workout progression — pulling from a GitHub Actions pipeline that automatically syncs my gym data.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> Gut-feeling training leads to stalled progress. I wanted the data to tell me what's actually working.</li>
-      <li><strong>Approach:</strong> GitHub Actions pipeline exports Google Sheets gym log to CSV; dashboard fetches live data and renders SVG charts with no dependencies.</li>
-      <li><strong>Outcome:</strong> Identified volume trends, exercise PRs, and muscle group imbalances across every session logged.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="./gym-dashboard/index.html">View Dashboard</a>
-    </div>
-    <div class="card__meta">
-      <span>ETL</span>
-      <span>GitHub Actions</span>
-      <span>Dashboards</span>
-      <span>HTML</span>
-    </div>
-  </article>
+          <article class="card card--featured" data-reveal>
+            <div class="card__head">
+              <h3>Gym Analytics Dashboard</h3>
+            </div>
+            <p class="card__blurb">
+              A live, data-driven dashboard tracking my workout progression — pulling from a GitHub Actions pipeline that automatically syncs my gym data.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> Gut-feeling training leads to stalled progress. I wanted the data to tell me what's working.</li>
+              <li><strong>Approach:</strong> GitHub Actions exports my Google Sheets log to CSV; the dashboard renders SVG charts with zero dependencies.</li>
+              <li><strong>Outcome:</strong> Surfaces volume trends, exercise PRs, streaks, and muscle-group imbalances every session.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="./gym-dashboard/index.html">View dashboard</a>
+            </div>
+            <div class="card__meta">
+              <span>ETL</span>
+              <span>GitHub Actions</span>
+              <span>Dashboards</span>
+              <span>SVG</span>
+            </div>
+          </article>
 
-  <!-- Project 1 -->
-  <article class="card">
-    <div class="card__head">
-      <h3>Supplier Analysis</h3>
-    </div>
-    <p class="card__blurb">
-      Analyzed revenue by supplier, lead times, and the tie between delivery speed and financial performance.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> Identify top suppliers and bottlenecks across the chain.</li>
-      <li><strong>Approach:</strong> Exploratory data analysis with SQL/Python; feature pivots and visualizations.</li>
-      <li><strong>Insight:</strong> Clear pattern between on-time delivery and higher revenue share.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/supplier-analysis">View project</a>
-    </div>
-    <div class="card__meta">
-      <span>Python</span>
-      <span>SQL</span>
-      <span>Supply Chain</span>
-    </div>
-  </article>
+          <article class="card" data-reveal>
+            <div class="card__head">
+              <h3>Supplier Analysis</h3>
+            </div>
+            <p class="card__blurb">
+              Analyzed revenue by supplier, lead times, and the tie between delivery speed and financial performance.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> Identify top suppliers and bottlenecks across the chain.</li>
+              <li><strong>Approach:</strong> EDA with SQL/Python, feature pivots, and visualizations.</li>
+              <li><strong>Insight:</strong> Clear pattern between on-time delivery and higher revenue share.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/supplier-analysis" target="_blank" rel="noopener">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span><span>SQL</span><span>Supply Chain</span>
+            </div>
+          </article>
 
-  <!-- Project 2 -->
-  <article class="card">
-    <div class="card__head">
-      <h3>TFT Level Team Search Tool</h3>
-    </div>
-    <p class="card__blurb">
-      Built a front-end tool to search TFT team compositions by level and by units I already have, ranking results to minimize decision time.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> Quickly identify the best comp to pivot into based on current board state.</li>
-      <li><strong>Approach:</strong> Level-based filtering with a "What do you already have?" selector; comps scored by unit overlap and sorted by closeness-to-complete.</li>
-      <li><strong>Outcome:</strong> Highlights the most achievable comps first while clearly surfacing missing units and active bronze traits.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="./tft-team-search/index.html">View project</a>
-      <a class="btn btn--sm" href="https://github.com/Streetlight321/TFT-Bronze-for-Life">Source</a>
-    </div>
-    <div class="card__meta">
-      <span>Python</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-    </div>
-  </article>
+          <article class="card" data-reveal>
+            <div class="card__head">
+              <h3>TFT Level Team Search Tool</h3>
+            </div>
+            <p class="card__blurb">
+              A front-end tool to search TFT team compositions by level and already-owned units, ranking results to minimize decision time.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> Quickly identify the best comp to pivot into based on current board state.</li>
+              <li><strong>Approach:</strong> Level-based filtering with a "what do you already have?" selector; comps scored by unit overlap.</li>
+              <li><strong>Outcome:</strong> Surfaces the most achievable comps first while showing missing units and active bronze traits.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="./tft-team-search/index.html">View project</a>
+              <a class="btn btn--sm btn--ghost" href="https://github.com/Streetlight321/TFT-Bronze-for-Life" target="_blank" rel="noopener">Source</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+          </article>
 
-  <!-- Project 3 -->
-  <article class="card">
-    <div class="card__head">
-      <h3>XGBoost Home Regressor</h3>
-    </div>
-    <p class="card__blurb">
-      Used Python to extract, clean, and apply machine learning to predict housing prices.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> Estimate home prices based on complex market features.</li>
-      <li><strong>Approach:</strong> Data cleaning, feature engineering, and XGBoost regression model.</li>
-      <li><strong>Outcome:</strong> Achieved strong predictive accuracy and feature insights for key housing factors.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/xgboost-home-regressor">View project</a>
-    </div>
-    <div class="card__meta">
-      <span>Python</span>
-      <span>XGBoost</span>
-      <span>Regression</span>
-    </div>
-  </article>
+          <article class="card" data-reveal>
+            <div class="card__head">
+              <h3>XGBoost Home Regressor</h3>
+            </div>
+            <p class="card__blurb">
+              Used Python to extract, clean, and apply machine learning to predict housing prices.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> Estimate home prices based on complex market features.</li>
+              <li><strong>Approach:</strong> Data cleaning, feature engineering, and XGBoost regression.</li>
+              <li><strong>Outcome:</strong> Strong predictive accuracy and feature insights for key housing factors.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/xgboost-home-regressor" target="_blank" rel="noopener">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span><span>XGBoost</span><span>Regression</span>
+            </div>
+          </article>
 
-  <!-- Project 4 -->
-  <article class="card">
-    <div class="card__head">
-      <h3>Job Salary Predictions</h3>
-    </div>
-    <p class="card__blurb">
-      Used Python to clean job market data and build regression models to predict salaries.
-    </p>
-    <ul class="card__bullets">
-      <li><strong>Problem:</strong> People are often under paid. How do I know how much I should be paid?</li>
-      <li><strong>Approach:</strong> Cleaned a large dataset, then used Linear Regression to predict how much salary should be.</li>
-      <li><strong>Insight:</strong> Strong features in experience level and company size; produced interpretable salary trends.</li>
-    </ul>
-    <div class="card__links">
-      <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/data-job-salary-predictions">View project</a>
-    </div>
-    <div class="card__meta">
-      <span>Python</span>
-      <span>Pandas</span>
-      <span>Regression</span>
-    </div>
-  </article>
-
-</div>
-
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="contact">
-        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
-        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+          <article class="card" data-reveal>
+            <div class="card__head">
+              <h3>Job Salary Predictions</h3>
+            </div>
+            <p class="card__blurb">
+              Cleaned job-market data and built regression models to predict salaries.
+            </p>
+            <ul class="card__bullets">
+              <li><strong>Problem:</strong> People are often underpaid — how do I know what I should make?</li>
+              <li><strong>Approach:</strong> Cleaned a large dataset and applied linear regression.</li>
+              <li><strong>Insight:</strong> Strong signal from experience level and company size; interpretable trends.</li>
+            </ul>
+            <div class="card__links">
+              <a class="btn btn--sm" href="https://www.kaggle.com/code/yousefeddin/data-job-salary-predictions" target="_blank" rel="noopener">View project</a>
+            </div>
+            <div class="card__meta">
+              <span>Python</span><span>Pandas</span><span>Regression</span>
+            </div>
+          </article>
+        </div>
       </div>
-      <p>© <span id="year"></span> Yousef Eddin · Built with vanilla HTML &amp; CSS</p>
-    </div>
+    </section>
+  </main>
 
-    <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">in/ yeddin</a>
+        <a href="tel:17044941541">☎ (704) 494-1541</a>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
+    </div>
   </footer>
+
+  <script src="site.js" defer></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../Me.png">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="dashboard.css" />
@@ -21,12 +21,25 @@
         <h1 class="brand__title">
           <a href="../index.html" class="brand__link">Yousef Eddin</a>
         </h1>
-        <p class="brand__tagline">Data Scientist & Analyst</p>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
       </div>
 
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="./index.html" aria-current="page">Dashboard</a></li>
+        </ul>
+      </nav>
+
       <div class="header-cta">
-        <a class="btn" href="../projects.html">Projects</a>
-        <a class="btn btn--ghost" href="../Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="btn btn--sm" href="../projects.html">Projects</a>
+        <a class="btn btn--sm btn--ghost" href="../Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
       </div>
     </div>
   </header>
@@ -34,41 +47,47 @@
   <main id="main">
     <section class="section">
       <div class="container">
-        <div class="section__header">
+        <div class="section__header" data-reveal>
           <h2 class="section__title">Gym Analytics Dashboard</h2>
           <p class="section__subtitle">Live data pulled from my workout log via GitHub Actions.</p>
         </div>
 
-        <div id="loading" class="loading">
+        <div id="loading" class="loading" role="status" aria-live="polite">
           <div class="spinner"></div>
-          <p style="color:var(--muted);margin-top:1rem;">Loading workout data...</p>
+          <p style="color:var(--muted); margin-top: 1rem;">Loading workout data…</p>
         </div>
-        <div id="error" class="error-msg" style="display:none;"></div>
+
+        <div id="error" class="error-msg" style="display:none;" role="alert"></div>
+
         <div id="dashboard" style="display:none;">
 
-          <!-- Hero Stats -->
-          <div class="hero-stats" id="hero-stats"></div>
+          <div class="hero-stats" id="hero-stats" aria-label="Summary statistics"></div>
 
-          <!-- Daily Volume by Type Chart -->
-          <div class="dash-section">
-            <h3 class="dash-section__title">Daily Volume by Type</h3>
+          <div class="dash-section" data-reveal>
+            <div class="dash-section__head">
+              <h3 class="dash-section__title">Daily Volume by Type</h3>
+              <div class="range-filter" role="tablist" aria-label="Date range">
+                <button class="range-btn is-active" type="button" data-range="30" role="tab" aria-selected="true">30d</button>
+                <button class="range-btn" type="button" data-range="90" role="tab" aria-selected="false">90d</button>
+                <button class="range-btn" type="button" data-range="all" role="tab" aria-selected="false">All time</button>
+              </div>
+            </div>
             <div class="chart-container" id="weekly-chart-wrap" style="position:relative;"></div>
             <div id="daily-session-detail"></div>
           </div>
 
-          <!-- Exercise Progress -->
-          <div class="dash-section">
+          <div class="dash-section" data-reveal>
             <h3 class="dash-section__title">Exercise Progress</h3>
             <div class="chart-container">
               <div class="exercise-filter-row">
-                <select id="muscle-group-select" class="exercise-select">
+                <select id="muscle-group-select" class="exercise-select" aria-label="Muscle group">
                   <option value="All">All</option>
                   <option value="Push">Push</option>
                   <option value="Pull">Pull</option>
-                  <option value="Leg">Leg/Legs</option>
+                  <option value="Leg">Legs</option>
                 </select>
-                <select id="exercise-select" class="exercise-select">
-                  <option value="">Select an exercise...</option>
+                <select id="exercise-select" class="exercise-select" aria-label="Exercise">
+                  <option value="">Select an exercise…</option>
                 </select>
               </div>
               <div id="exercise-chart-wrap" style="position:relative;"></div>
@@ -76,14 +95,12 @@
             </div>
           </div>
 
-          <!-- Volume by Muscle Group -->
-          <div class="dash-section">
+          <div class="dash-section" data-reveal>
             <h3 class="dash-section__title">Volume by Muscle Group</h3>
             <div class="chart-container" id="muscle-chart-wrap"></div>
           </div>
 
-          <!-- Recent Sessions -->
-          <div class="dash-section">
+          <div class="dash-section" data-reveal>
             <h3 class="dash-section__title">Recent Sessions</h3>
             <div id="sessions-log"></div>
           </div>
@@ -93,20 +110,20 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <div class="contact">
-        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
-        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">in/ yeddin</a>
+        <a href="tel:17044941541">☎ (704) 494-1541</a>
       </div>
-      <p>&copy; <span id="year"></span> Yousef Eddin &middot; Built with vanilla HTML &amp; CSS</p>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
     </div>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 
-  <div class="chart-tooltip" id="tooltip"></div>
+  <div class="chart-tooltip" id="tooltip" role="tooltip"></div>
 
-  <script src="dashboard.js"></script>
+  <script src="../site.js" defer></script>
+  <script src="dashboard.js" defer></script>
 </body>
 </html>

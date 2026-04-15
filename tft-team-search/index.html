@@ -7,18 +7,33 @@
   <link rel="icon" type="image/png" href="../Me.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
       <div class="brand">
         <h1 class="brand__title">
           <a href="../index.html" class="brand__link">Yousef Eddin</a>
         </h1>
-        <p class="brand__tagline">Data Scientist & Analyst</p>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
       </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="./index.html" aria-current="page">TFT Tool</a></li>
+        </ul>
+      </nav>
+
       <div class="header-cta">
         <a class="btn btn--sm" href="../projects.html">Projects</a>
         <a class="btn btn--sm btn--ghost" href="../index.html">Home</a>
@@ -27,8 +42,7 @@
   </header>
 
   <main class="container grid">
-    <!-- LEFT: Controls -->
-    <section class="panel">
+    <section class="panel" data-reveal="left">
       <h2>Level</h2>
       <div class="row">
         <label for="levelSelect" class="label">Choose level</label>
@@ -43,12 +57,12 @@
 
       <div class="row">
         <label for="champSearch" class="label">Search champions</label>
-        <input id="champSearch" class="input" type="text" placeholder="Type to filter champions..." />
+        <input id="champSearch" class="input" type="text" placeholder="Type to filter champions..." autocomplete="off" />
       </div>
 
       <div class="row">
         <div class="label">Selected</div>
-        <div id="selectedChamps" class="chips"></div>
+        <div id="selectedChamps" class="chips" aria-live="polite"></div>
       </div>
 
       <div class="row">
@@ -62,7 +76,7 @@
       <div class="row">
         <label for="minOverlap" class="label">Minimum overlap</label>
         <div class="row-inline">
-          <input id="minOverlap" type="range" min="0" max="10" value="0" />
+          <input id="minOverlap" type="range" min="0" max="10" value="0" aria-describedby="minOverlapLabel" />
           <span id="minOverlapLabel" class="pill">0</span>
         </div>
         <p class="muted small">Show comps where you already own at least this many units.</p>
@@ -77,36 +91,35 @@
         </select>
       </div>
 
-      <div class="row" style="display:flex;gap:10px;">
-        <button id="clearOwned" class="btn">Clear selections</button>
-        <button id="showAll" class="btn btn--ghost">Show All / Reset</button>
+      <div class="row btn-row">
+        <button id="clearOwned" type="button" class="btn">Clear selections</button>
+        <button id="showAll" type="button" class="btn btn--ghost">Reset filters</button>
       </div>
     </section>
 
-    <!-- RIGHT: Results -->
-    <section class="panel">
+    <section class="panel" data-reveal="right">
       <div class="row-inline between">
         <h2>Results</h2>
-        <div id="resultCount" class="pill">0</div>
+        <div id="resultCount" class="pill" aria-live="polite">0</div>
       </div>
 
       <div id="resultsSummary" class="results-summary"></div>
-      <div id="results" class="results"></div>
+      <div id="results" class="results" aria-live="polite"></div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container footer-inner">
-      <div class="contact">
-        <p><a href="mailto:Yousef.Eddin123@gmail.com">Yousef.Eddin123@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">linkedin.com/in/yeddin</a></p>
-        <p><a href="tel:17044941541">(704) 494-1541</a></p>
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener">in/ yeddin</a>
+        <a href="tel:17044941541">☎ (704) 494-1541</a>
       </div>
-      <p>&copy; <span id="year"></span> Yousef Eddin &middot; Built with vanilla HTML &amp; CSS</p>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
     </div>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="../site.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
