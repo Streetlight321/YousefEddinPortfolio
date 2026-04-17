@@ -214,3 +214,72 @@
   line-height: 1.6;
   margin: 0 0 1rem;
 }
+
+/* ---------- WIP badge on blog cards ---------- */
+.card--wip {
+  position: relative;
+}
+.card--wip::after {
+  content: "WIP";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(120deg, #f4a261, #e76f51);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(231, 111, 81, 0.35);
+}
+
+/* ---------- WIP inline notice on post pages ---------- */
+.wip-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(244, 162, 97, 0.15);
+  color: #c1440e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1.5px solid rgba(244, 162, 97, 0.4);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Pending / in-progress review card ---------- */
+.review-card--pending {
+  background: rgba(103, 103, 136, 0.03);
+  border: 1.5px dashed rgba(103, 103, 136, 0.35);
+  box-shadow: none;
+  opacity: 0.85;
+}
+.review-card--pending::before {
+  background: linear-gradient(90deg, rgba(103, 103, 136, 0.4), rgba(103, 103, 136, 0.15));
+  opacity: 0.6;
+}
+.review-card--pending .review-card__title,
+.review-card--pending .review-card__meta {
+  color: var(--muted);
+}
+.review-card__pending-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 600;
+  margin: 0;
+}
+.pending-indicator {
+  display: inline-block;
+  font-size: 1.2rem;
+  animation: wip-pulse 1.8s ease-in-out infinite;
+}
+@keyframes wip-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.15); }
+}
