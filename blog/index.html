@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog · Yousef Eddin</title>
+  <link rel="icon" type="image/png" href="../Me.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="blog.css" />
+  <meta name="description" content="Blog — games, data, and whatever else is on Yousef Eddin's mind." />
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand__title">
+          <a href="../index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="index.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="header-icon" href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21h-4V9z"/></svg>
+        </a>
+        <a class="header-icon" href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="btn btn--sm btn--ghost" href="../Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section section--alt" aria-labelledby="blog-heading">
+      <div class="container">
+        <div class="section__header" data-reveal>
+          <h2 class="section__title" id="blog-heading">Blog</h2>
+          <p class="section__subtitle">Games, data, and whatever else is on my mind.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card" data-reveal>
+            <div class="card__head">
+              <h3>New Games This Year!</h3>
+            </div>
+            <p class="blog-card__date">April 6, 2026</p>
+            <p class="blog-card__excerpt">
+              I'm playing classic games from across gaming history to build a real baseline for what "amazing" actually means. Ratings, reviews, and hot takes inside.
+            </p>
+            <div class="card__links">
+              <a class="btn btn--sm" href="./posts/new-games-2026.html">Read more &rarr;</a>
+            </div>
+            <div class="card__meta">
+              <span>Gaming</span>
+              <span>Reviews</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn">in/ yeddin</a>
+        <a href="tel:17044941541" aria-label="Phone">☎ (704) 494-1541</a>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
+    </div>
+  </footer>
+
+  <script src="../site.js" defer></script>
+</body>
+</html>

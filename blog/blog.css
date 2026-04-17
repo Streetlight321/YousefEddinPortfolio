@@ -1,0 +1,216 @@
+/* ==========================================================
+   Blog-specific styles — relies on tokens from ../styles.css
+   ========================================================== */
+
+/* ---------- Back link ---------- */
+.blog-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.blog-back-link:hover {
+  color: var(--brand);
+  transform: translateX(-4px);
+}
+
+/* ---------- Post header ---------- */
+.blog-post-header {
+  margin-bottom: 2rem;
+}
+.blog-post-header h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--brand);
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+.blog-post-header .blog-date {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.blog-post-header .blog-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.blog-post-header .blog-tags span {
+  background: #f5f5f7;
+  color: var(--muted);
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* ---------- Intro block ---------- */
+.blog-intro {
+  background: rgba(108, 99, 255, 0.04);
+  border-left: 4px solid var(--brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.blog-intro p {
+  margin: 0 0 0.8rem;
+}
+.blog-intro p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Game list ---------- */
+.game-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.game-list__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem 1.1rem;
+  background: var(--panel);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+  font-size: 0.98rem;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+.game-list__item:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+}
+.game-list__item--done {
+  border-left: 4px solid var(--highlight);
+  color: var(--text);
+}
+.game-list__item--done .game-list__icon {
+  color: var(--highlight);
+  font-size: 1.15rem;
+}
+.game-list__item--done .game-list__status {
+  color: var(--highlight);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: auto;
+}
+.game-list__item--pending {
+  border-left: 4px solid rgba(103, 103, 136, 0.2);
+  color: var(--muted);
+}
+.game-list__item--pending .game-list__icon {
+  font-size: 1.15rem;
+}
+.game-list__item--pending .game-list__status {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* ---------- Review card ---------- */
+.review-card {
+  position: relative;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.6rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(108, 99, 255, 0.06);
+}
+.review-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  opacity: 0.8;
+}
+
+.review-card__title {
+  font-size: 1.4rem;
+  color: var(--brand);
+  font-weight: 800;
+  margin: 0 0 0.3rem;
+}
+.review-card__meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 1.2rem;
+}
+
+.review-card__section h4 {
+  color: var(--brand);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 1.4rem 0 0.5rem;
+}
+.review-card__section h4:first-child {
+  margin-top: 0;
+}
+.review-card__section p {
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0 0 0.8rem;
+}
+
+/* ---------- Star rating ---------- */
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 1.2rem 0 0;
+}
+.star-rating__star {
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--muted);
+  opacity: 0.3;
+}
+.star-rating__star--filled {
+  color: var(--brand);
+  opacity: 1;
+}
+
+.rating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.75rem;
+  background: rgba(108, 99, 255, 0.1);
+  color: var(--brand);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+
+/* ---------- Blog card extras on listing page ---------- */
+.blog-card__date {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.3rem 0 0.5rem;
+}
+.blog-card__excerpt {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
