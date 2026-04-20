@@ -108,6 +108,31 @@
     setTimeout(tick, 600);
   }
 
+  /* ---------- Gif attribution dropdown ---------- */
+  function initGifCredit() {
+    const gif = qs('.intro__gif');
+    const credit = qs('#gif-credit');
+    if (!gif || !credit) return;
+
+    const setOpen = (open) => {
+      credit.hidden = !open;
+      gif.setAttribute('aria-expanded', String(open));
+    };
+
+    on(gif, 'click', (e) => {
+      e.stopPropagation();
+      setOpen(credit.hidden);
+    });
+    on(gif, 'keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setOpen(credit.hidden);
+      }
+    });
+    on(credit, 'click', (e) => e.stopPropagation());
+    on(document, 'click', () => setOpen(false));
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     stampYear();
@@ -115,6 +140,7 @@
     initReveal();
     initRipple();
     initTypewriter();
+    initGifCredit();
   }
 
   if (document.readyState === 'loading') {

@@ -384,6 +384,37 @@ a { color: var(--brand); }
   transition: transform 0.4s var(--ease-out);
 }
 .intro__gif:hover { transform: rotate(0) scale(1.02); }
+.intro__gif { cursor: pointer; }
+
+.gif-attribution { position: relative; display: inline-block; }
+
+.gif-credit {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  z-index: 10;
+  animation: gif-credit-in 0.2s var(--ease-out);
+}
+.gif-credit a { color: var(--brand); text-decoration: none; }
+.gif-credit a:hover { text-decoration: underline; }
+
+@keyframes gif-credit-in {
+  from { opacity: 0; transform: translate(-50%, -6px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gif-credit { animation: none; }
+}
 
 .quick-links {
   display: flex;
