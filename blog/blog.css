@@ -283,3 +283,304 @@
   0%, 100% { opacity: 0.45; transform: scale(1); }
   50%      { opacity: 1;    transform: scale(1.15); }
 }
+
+/* ==========================================================
+   Editorial article layout — End of College Advice post
+   ========================================================== */
+
+.blog-article {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.blog-article p {
+  line-height: 1.8;
+  color: var(--text);
+  font-size: 1.02rem;
+  margin: 0 0 1rem;
+}
+.blog-article code {
+  background: rgba(108, 99, 255, 0.08);
+  color: var(--brand);
+  padding: 0.12rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.92em;
+  font-weight: 600;
+}
+
+/* ---------- Author intro callout ---------- */
+.blog-article__intro {
+  position: relative;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.08), rgba(255, 122, 192, 0.06));
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+  margin: 0 0 3rem;
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--brand);
+}
+.blog-article__intro p {
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ---------- Numbered sections ---------- */
+.advice-section {
+  margin: 0 0 3.2rem;
+  padding-top: 0.5rem;
+}
+.advice-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 0 0 1.1rem;
+  flex-wrap: wrap;
+}
+.advice-section__number {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--brand);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  opacity: 0.85;
+}
+.advice-section__title {
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* ---------- Subsections (5.1, 5.2) ---------- */
+.advice-subsection {
+  margin: 1.8rem 0 0;
+  padding: 0 0 0 1.2rem;
+  border-left: 2px solid rgba(108, 99, 255, 0.15);
+}
+.advice-subsection__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.7rem;
+}
+.advice-subsection__number {
+  color: var(--brand);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+/* ---------- Callout boxes ---------- */
+.callout {
+  background: rgba(108, 99, 255, 0.06);
+  border-left: 3px solid var(--brand);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin: 1.4rem 0;
+}
+.callout p {
+  margin: 0;
+  line-height: 1.7;
+  color: var(--text);
+}
+.callout--brand strong {
+  color: var(--brand);
+  font-weight: 800;
+}
+
+/* ---------- Styled list ---------- */
+.styled-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.styled-list__item {
+  position: relative;
+  padding: 0.15rem 0 0.15rem 1.5rem;
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+.styled-list__item::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  color: var(--brand);
+  font-weight: 800;
+}
+
+/* ---------- Step progression ---------- */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.7rem 0;
+}
+.step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  top: 42px;
+  bottom: -4px;
+  width: 2px;
+  background: rgba(108, 99, 255, 0.2);
+}
+.step__number {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+  position: relative;
+  z-index: 1;
+}
+.step__content {
+  padding-top: 0.45rem;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ---------- Color palette swatches ---------- */
+.color-palette {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 1.2rem 0 1.4rem;
+  background: rgba(94, 208, 189, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+}
+.color-swatch {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.color-swatch__dot {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+.color-swatch__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1.3;
+}
+.color-swatch__hex {
+  font-family: 'Inter', monospace;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.color-swatch__desc {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ---------- Final Thought closing block ---------- */
+.final-thought {
+  margin: 3.5rem 0 0;
+  padding: 2rem 1.8rem 2.2rem;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(255, 122, 192, 0.08) 50%, rgba(94, 208, 189, 0.1));
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.final-thought::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--brand), var(--accent), var(--highlight));
+}
+.final-thought__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--brand);
+  margin: 0 0 0.8rem;
+  letter-spacing: -0.01em;
+}
+.final-thought p {
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+.final-thought__list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.final-thought__list li {
+  position: relative;
+  padding: 0.55rem 0.9rem 0.55rem 2.1rem;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.final-thought__list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--highlight);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.final-thought__signoff {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand);
+  text-align: center;
+  margin: 0.6rem 0 0 !important;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 600px) {
+  .blog-article__intro,
+  .final-thought {
+    padding: 1.3rem 1.2rem;
+  }
+  .advice-section__head {
+    gap: 0.6rem;
+  }
+}
