@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>How I Made the Gym Dashboard — Yousef Eddin</title>
+  <title>How I Made the Gym Dashboard, Yousef Eddin</title>
   <link rel="icon" type="image/png" href="../Me.png">
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +68,7 @@
           </div>
 
           <div class="blog-article__intro" data-reveal>
-            <p>I track every workout in a Google Sheet — one row per set: date, day type, exercise, set number, weight, reps, volume. After a couple years of logging, the sheet had grown into something genuinely interesting. There were patterns in there I couldn't see by scrolling. So I built a dashboard. Not a notebook, not a one-off chart in Excel — a live page on my portfolio that pulls the latest data every day and renders it with no third-party chart libraries. Here's how it works.</p>
+            <p>I track every workout in a Google Sheet, one row per set: date, day type, exercise, set number, weight, reps, volume. After a couple years of logging, the sheet had grown into something genuinely interesting. There were patterns in there I couldn't see by scrolling. So I built a dashboard. Not a notebook, not a one-off chart in Excel, a live page on my portfolio that pulls the latest data every day and renders it with no third-party chart libraries. Here's how it works.</p>
           </div>
 
           <section class="advice-section" data-reveal>
@@ -95,15 +95,15 @@
             <p>Everything starts with a Google Sheet. I log workouts on my phone between sets, which means the source of truth has to be something I'll actually keep updated. Sheets won that fight by default.</p>
             <p>Each row is a single set. The columns the dashboard reads are:</p>
             <ul class="styled-list">
-              <li class="styled-list__item"><code>Date</code> — when the set happened (<code>M/D/YYYY</code>)</li>
-              <li class="styled-list__item"><code>Day</code> — Push, Pull, or Leg</li>
-              <li class="styled-list__item"><code>Exercises</code> — exercise name</li>
-              <li class="styled-list__item"><code>Set #</code> — which set within the workout</li>
-              <li class="styled-list__item"><code>Weight</code> — load, or <code>"Body Weight"</code> for bodyweight movements</li>
-              <li class="styled-list__item"><code># of Reps</code> — reps performed</li>
-              <li class="styled-list__item"><code>Volume</code> — weight × reps</li>
+              <li class="styled-list__item"><code>Date</code>, when the set happened (<code>M/D/YYYY</code>)</li>
+              <li class="styled-list__item"><code>Day</code>, Push, Pull, or Leg</li>
+              <li class="styled-list__item"><code>Exercises</code>, exercise name</li>
+              <li class="styled-list__item"><code>Set #</code>, which set within the workout</li>
+              <li class="styled-list__item"><code>Weight</code>, load, or <code>"Body Weight"</code> for bodyweight movements</li>
+              <li class="styled-list__item"><code># of Reps</code>, reps performed</li>
+              <li class="styled-list__item"><code>Volume</code>, weight × reps</li>
             </ul>
-            <p>It's messy in the way any spreadsheet that's been edited by a human for years is messy — broken formula leaks, inconsistent group names, occasional typos. The frontend handles all of that.</p>
+            <p>It's messy in the way any spreadsheet that's been edited by a human for years is messy, broken formula leaks, inconsistent group names, occasional typos. The frontend handles all of that.</p>
           </section>
 
           <section class="advice-section" data-reveal>
@@ -111,7 +111,7 @@
               <span class="advice-section__number">03</span>
               <h3 class="advice-section__title">The Pipeline</h3>
             </div>
-            <p>The pipeline lives in a separate repo: <a href="https://github.com/Streetlight321/pull_gym_data" target="_blank" rel="noopener"><code>Streetlight321/pull_gym_data</code></a>. It's small on purpose — a Python script and a workflow YAML.</p>
+            <p>The pipeline lives in a separate repo: <a href="https://github.com/Streetlight321/pull_gym_data" target="_blank" rel="noopener"><code>Streetlight321/pull_gym_data</code></a>. It's small on purpose, a Python script and a workflow YAML.</p>
 
             <ol class="steps">
               <li class="step">
@@ -124,11 +124,11 @@
               </li>
               <li class="step">
                 <span class="step__number">3</span>
-                <div class="step__content"><strong>Schedule</strong> the workflow with cron — <code>0 5 * * *</code>, midnight Eastern. <code>workflow_dispatch</code> is enabled too so I can trigger it manually.</div>
+                <div class="step__content"><strong>Schedule</strong> the workflow with cron, <code>0 5 * * *</code>, midnight Eastern. <code>workflow_dispatch</code> is enabled too so I can trigger it manually.</div>
               </li>
               <li class="step">
                 <span class="step__number">4</span>
-                <div class="step__content"><strong>Commit</strong> the updated CSV back to the repo, but only if it actually changed. The trick is <code>git diff --cached --quiet || git commit</code> — no empty "nothing changed today" commits on rest weeks.</div>
+                <div class="step__content"><strong>Commit</strong> the updated CSV back to the repo, but only if it actually changed. The trick is <code>git diff --cached --quiet || git commit</code>, no empty "nothing changed today" commits on rest weeks.</div>
               </li>
             </ol>
 
@@ -149,9 +149,9 @@
               <li class="styled-list__item"><strong>Cleaning pass.</strong> Normalizes dates from <code>M/D/YYYY</code>, strips <code>#VALUE!</code> errors, handles <code>"Body Weight"</code> as a weight, normalizes <code>"Legs"</code> to <code>"Leg"</code>. All the spreadsheet quirks live in one place.</li>
               <li class="styled-list__item"><strong>SVG charts from scratch.</strong> Every line, dot, and tooltip is generated by a small <code>svg()</code> helper. Zero dependencies, instant page load.</li>
               <li class="styled-list__item"><strong>Animated entrance.</strong> Each polyline's actual path length is measured in JS and written to a <code>--dash</code> CSS variable per chart, so a short line and a long line both draw in at the same rate.</li>
-              <li class="styled-list__item"><strong>Date-range filter.</strong> A 30d / 90d / All-time toggle re-renders the main chart on click. Hero stats stay on lifetime totals — those don't move with the filter.</li>
+              <li class="styled-list__item"><strong>Date-range filter.</strong> A 30d / 90d / All-time toggle re-renders the main chart on click. Hero stats stay on lifetime totals, those don't move with the filter.</li>
             </ul>
-            <p>The payoff for skipping a chart library: when I wanted to do something weird — like animate the line drawing itself in by stroking along a calculated path length — I could just do it. No fighting an abstraction.</p>
+            <p>The payoff for skipping a chart library: when I wanted to do something weird, like animate the line drawing itself in by stroking along a calculated path length, I could just do it. No fighting an abstraction.</p>
           </section>
 
           <section class="advice-section" data-reveal>
@@ -164,7 +164,7 @@
             <ul class="styled-list">
               <li class="styled-list__item">The cleaning logic should live in the Python step, not the frontend. Right now the browser is doing schema work that should have happened upstream.</li>
               <li class="styled-list__item">An unauthenticated, uncached fetch is fine for one user but would fall over with real traffic. A CDN like Cloudflare in front of the raw URL would solve that for free.</li>
-              <li class="styled-list__item">A "PRs over time" panel — the data's already there, I just haven't built the view yet.</li>
+              <li class="styled-list__item">A "PRs over time" panel, the data's already there, I just haven't built the view yet.</li>
             </ul>
             <p>But the bigger takeaway is that this whole pattern is reusable. If you've got data sitting in a spreadsheet that you'd like to see as a live dashboard, three moving parts will get you there: a service account, a cron'd Action, and a raw CSV fetch. That's it.</p>
           </section>
@@ -173,7 +173,7 @@
             <h3 class="final-thought__title">Final Thought</h3>
             <p>If you take anything from this build:</p>
             <ul class="final-thought__list">
-              <li>Pick the constraint first — "no backend" decided everything else</li>
+              <li>Pick the constraint first, "no backend" decided everything else</li>
               <li>Let the cheapest tool win when it's good enough</li>
               <li>Hand-roll the small stuff; it's usually less code than the library</li>
               <li>Clean data upstream, render it downstream</li>
