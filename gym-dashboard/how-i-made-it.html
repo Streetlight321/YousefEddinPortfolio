@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How I Made the Gym Dashboard — Yousef Eddin</title>
+  <link rel="icon" type="image/png" href="../Me.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../blog/blog.css" />
+  <meta name="description" content="How I built a live gym analytics dashboard from a Google Sheet using GitHub Actions and zero-dependency vanilla JS." />
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand__title">
+          <a href="../index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html" aria-current="page">Projects</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="header-icon" href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21h-4V9z"/></svg>
+        </a>
+        <a class="header-icon" href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="btn btn--sm btn--ghost" href="../Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="post-heading">
+      <div class="container">
+
+        <a href="../projects.html" class="blog-back-link" data-reveal>&larr; Back to Projects</a>
+
+        <article class="blog-article">
+
+          <div class="blog-post-header" data-reveal>
+            <h2 id="post-heading">How I Made the Gym Analytics Dashboard</h2>
+            <p class="blog-date">Published 2026</p>
+            <div class="blog-tags">
+              <span>ETL</span>
+              <span>GitHub Actions</span>
+              <span>Vanilla JS</span>
+              <span>SVG</span>
+            </div>
+          </div>
+
+          <div class="blog-article__intro" data-reveal>
+            <p>I track every workout in a Google Sheet — one row per set: date, day type, exercise, set number, weight, reps, volume. After a couple years of logging, the sheet had grown into something genuinely interesting. There were patterns in there I couldn't see by scrolling. So I built a dashboard. Not a notebook, not a one-off chart in Excel — a live page on my portfolio that pulls the latest data every day and renders it with no third-party chart libraries. Here's how it works.</p>
+          </div>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">01</span>
+              <h3 class="advice-section__title">Simple Overview</h3>
+            </div>
+            <p>The whole stack has three moving parts: the Google Sheet I log into on my phone, a scheduled GitHub Action that snapshots the sheet to a CSV, and a static page that fetches that CSV and draws the charts.</p>
+
+            <figure class="project-flow" style="margin: 1.5rem 0; text-align: center;">
+              <img src="./Project_FlowChart.jpg" alt="Flowchart: Google Sheets to GitHub Actions to pull_data.py to output.csv on GitHub to Fetch and Parse using JavaScript to Output charts" style="max-width: 100%; height: auto; border-radius: 12px;" />
+            </figure>
+
+            <aside class="callout callout--brand">
+              <p><strong>The constraint that shaped everything:</strong> I wanted this hosted as part of my static portfolio. No backend server, no database, no paid service. That single rule drove every decision below.</p>
+            </aside>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">02</span>
+              <h3 class="advice-section__title">The Data Source</h3>
+            </div>
+            <p>Everything starts with a Google Sheet. I log workouts on my phone between sets, which means the source of truth has to be something I'll actually keep updated. Sheets won that fight by default.</p>
+            <p>Each row is a single set. The columns the dashboard reads are:</p>
+            <ul class="styled-list">
+              <li class="styled-list__item"><code>Date</code> — when the set happened (<code>M/D/YYYY</code>)</li>
+              <li class="styled-list__item"><code>Day</code> — Push, Pull, or Leg</li>
+              <li class="styled-list__item"><code>Exercises</code> — exercise name</li>
+              <li class="styled-list__item"><code>Set #</code> — which set within the workout</li>
+              <li class="styled-list__item"><code>Weight</code> — load, or <code>"Body Weight"</code> for bodyweight movements</li>
+              <li class="styled-list__item"><code># of Reps</code> — reps performed</li>
+              <li class="styled-list__item"><code>Volume</code> — weight × reps</li>
+            </ul>
+            <p>It's messy in the way any spreadsheet that's been edited by a human for years is messy — broken formula leaks, inconsistent group names, occasional typos. The frontend handles all of that.</p>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">03</span>
+              <h3 class="advice-section__title">The Pipeline</h3>
+            </div>
+            <p>The pipeline lives in a separate repo: <a href="https://github.com/Streetlight321/pull_gym_data" target="_blank" rel="noopener"><code>Streetlight321/pull_gym_data</code></a>. It's small on purpose — a Python script and a workflow YAML.</p>
+
+            <ol class="steps">
+              <li class="step">
+                <span class="step__number">1</span>
+                <div class="step__content"><strong>Authenticate</strong> with <code>gspread</code> using a Google service account. The service account JSON and the sheet ID live in GitHub repo secrets; I shared the sheet with the service account's email as a viewer.</div>
+              </li>
+              <li class="step">
+                <span class="step__number">2</span>
+                <div class="step__content"><strong>Pull</strong> all values from the first tab and dump them straight to <code>output.csv</code>. The script is roughly 20 lines.</div>
+              </li>
+              <li class="step">
+                <span class="step__number">3</span>
+                <div class="step__content"><strong>Schedule</strong> the workflow with cron — <code>0 5 * * *</code>, midnight Eastern. <code>workflow_dispatch</code> is enabled too so I can trigger it manually.</div>
+              </li>
+              <li class="step">
+                <span class="step__number">4</span>
+                <div class="step__content"><strong>Commit</strong> the updated CSV back to the repo, but only if it actually changed. The trick is <code>git diff --cached --quiet || git commit</code> — no empty "nothing changed today" commits on rest weeks.</div>
+              </li>
+            </ol>
+
+            <aside class="callout callout--brand">
+              <p><strong>Why this works:</strong> <code>GitHub Actions</code> gives me a free cron job, the CSV ends up at a public <code>raw.githubusercontent.com</code> URL, and a static page can <code>fetch</code> it directly. No server, no auth on the read path, no rate limits I'd ever realistically hit.</p>
+            </aside>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">04</span>
+              <h3 class="advice-section__title">The Frontend</h3>
+            </div>
+            <p>The dashboard is vanilla HTML, CSS, and JavaScript. No React, no Chart.js, no D3. On page load it does a single <code>fetch</code> against the raw CSV URL with <code>cache: 'no-store'</code> so I always see the latest pull.</p>
+            <p>A few pieces worth calling out:</p>
+            <ul class="styled-list">
+              <li class="styled-list__item"><strong>Hand-rolled CSV parser.</strong> RFC 4180-compliant, walks the line character by character tracking quote state. I wrote it because some of my notes have commas in them and I didn't want to pull in a library for one function.</li>
+              <li class="styled-list__item"><strong>Cleaning pass.</strong> Normalizes dates from <code>M/D/YYYY</code>, strips <code>#VALUE!</code> errors, handles <code>"Body Weight"</code> as a weight, normalizes <code>"Legs"</code> to <code>"Leg"</code>. All the spreadsheet quirks live in one place.</li>
+              <li class="styled-list__item"><strong>SVG charts from scratch.</strong> Every line, dot, and tooltip is generated by a small <code>svg()</code> helper. Zero dependencies, instant page load.</li>
+              <li class="styled-list__item"><strong>Animated entrance.</strong> Each polyline's actual path length is measured in JS and written to a <code>--dash</code> CSS variable per chart, so a short line and a long line both draw in at the same rate.</li>
+              <li class="styled-list__item"><strong>Date-range filter.</strong> A 30d / 90d / All-time toggle re-renders the main chart on click. Hero stats stay on lifetime totals — those don't move with the filter.</li>
+            </ul>
+            <p>The payoff for skipping a chart library: when I wanted to do something weird — like animate the line drawing itself in by stroking along a calculated path length — I could just do it. No fighting an abstraction.</p>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">05</span>
+              <h3 class="advice-section__title">What I Learned</h3>
+            </div>
+            <p>The most expensive part of building this was deciding I didn't need a backend. Once that was settled, every other piece fell into place: Sheets for input, Actions as the cron, raw CSV as the API, vanilla JS for the view.</p>
+            <p>A few things I'd do differently if I were starting over:</p>
+            <ul class="styled-list">
+              <li class="styled-list__item">The cleaning logic should live in the Python step, not the frontend. Right now the browser is doing schema work that should have happened upstream.</li>
+              <li class="styled-list__item">An unauthenticated, uncached fetch is fine for one user but would fall over with real traffic. A CDN like Cloudflare in front of the raw URL would solve that for free.</li>
+              <li class="styled-list__item">A "PRs over time" panel — the data's already there, I just haven't built the view yet.</li>
+            </ul>
+            <p>But the bigger takeaway is that this whole pattern is reusable. If you've got data sitting in a spreadsheet that you'd like to see as a live dashboard, three moving parts will get you there: a service account, a cron'd Action, and a raw CSV fetch. That's it.</p>
+          </section>
+
+          <section class="final-thought" data-reveal>
+            <h3 class="final-thought__title">Final Thought</h3>
+            <p>If you take anything from this build:</p>
+            <ul class="final-thought__list">
+              <li>Pick the constraint first — "no backend" decided everything else</li>
+              <li>Let the cheapest tool win when it's good enough</li>
+              <li>Hand-roll the small stuff; it's usually less code than the library</li>
+              <li>Clean data upstream, render it downstream</li>
+              <li>Ship it, then iterate</li>
+            </ul>
+            <p class="final-thought__signoff">Three moving parts. That's the whole thing.</p>
+          </section>
+
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn">in/ yeddin</a>
+        <a href="tel:17044941541" aria-label="Phone">(704) 494-1541</a>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
+    </div>
+  </footer>
+
+  <script src="../site.js" defer></script>
+</body>
+</html>
