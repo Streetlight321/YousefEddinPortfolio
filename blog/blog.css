@@ -584,3 +584,17 @@
     gap: 0.6rem;
   }
 }
+
+/* ---------- Email signature figure ---------- */
+.email-signature-figure {
+  margin: 1.4rem auto;
+  max-width: 480px;
+  text-align: center;
+}
+.email-signature-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
