@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Defeating AI License Plate Readers: My Capstone</title>
+  <link rel="icon" type="image/png" href="../../Me.png">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="stylesheet" href="../blog.css" />
+  <meta name="description" content="How my capstone team built an adversarial noise system to defeat ALPR cameras like Flock, won Best Project, and still scored last on the presentation." />
+</head>
+<body>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="brand__title">
+          <a href="../../index.html" class="brand__link">Yousef Eddin</a>
+        </h1>
+        <p class="brand__tagline">Data Scientist &amp; Analyst</p>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../projects.html">Projects</a></li>
+          <li><a href="../index.html" aria-current="page">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="header-icon" href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21h-4V9z"/></svg>
+        </a>
+        <a class="header-icon" href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </a>
+        <a class="btn btn--sm btn--ghost" href="../../Yousef_Résumé.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" aria-labelledby="post-heading">
+      <div class="container">
+
+        <a href="../index.html" class="blog-back-link" data-reveal>&larr; Back to Blog</a>
+
+        <article class="blog-article">
+
+          <div class="blog-post-header" data-reveal>
+            <h2 id="post-heading">Defeating AI License Plate Readers: My Capstone</h2>
+            <p class="blog-date">Published 4/30/2026</p>
+            <div class="blog-tags">
+              <span>Data Science</span>
+              <span>Computer Vision</span>
+              <span>Research</span>
+            </div>
+          </div>
+
+          <div class="blog-article__intro" data-reveal>
+            <p>For my capstone project, I researched whether adversarial noise could be used to defeat ALPR (Automatic License Plate Recognition) models, the kind powering systems like Flock cameras, which are increasingly used by municipalities, retailers, and law enforcement to track vehicle movement at scale. The goal was straightforward: if you can introduce carefully engineered distortions to a license plate image, can you prevent these systems from reading it reliably?</p>
+            <p>The answer, it turns out, is yes, with caveats.</p>
+            <p>The techniques we explored included shape distortion, texture manipulation, sinusoidal warping, and Gaussian noise. I also used GIMP to mock up what a real-world "defended" plate might look like, not just as a theoretical result, but as a tangible artifact someone could actually evaluate. The final product is a publicly accessible, production-ready research tool.</p>
+          </div>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">01</span>
+              <h3 class="advice-section__title">What I learned on the technical side</h3>
+            </div>
+            <p><strong>File manipulation and dataset management.</strong> Our primary dataset came from a university in Brazil, the UFPR-ALPR dataset, and contained thousands of annotated vehicle images. Wrangling that into a usable format for training and evaluation was a significant effort in its own right, involving custom scripts to reformat annotations into YOLO-compatible bounding boxes and reorganize the directory structure entirely.</p>
+            <p><strong>Building a production API.</strong> The distortion engine, PlateShapez, is a fully packaged Python library with a CLI, a Python API, configuration file support, and a plugin-style perturbation registry. I used Processing (PDE) early in the project to prototype the shape-drawing logic, then migrated the full system to Python with a proper architecture. The API supports reproducible generation via random seeds, dry-run previews, and structured JSON metadata for every generated image.</p>
+            <p><strong>Code standardization with UV.</strong> I used UV to manage dependencies and enforce a consistent development environment. The project has a full CI pipeline on GitHub Actions, pre-commit hooks, Ruff for formatting and linting, and mypy for type checking. The goal was to build something a stranger could clone, run, and trust, not just something that worked on my machine.</p>
+            <p><strong>NEAT as an optimization backbone.</strong> Rather than hand-tuning perturbation parameters, we used NeuroEvolution of Augmenting Topologies (NEAT) as an optimization strategy, evolving configurations over multiple generations using evasion rate as the fitness signal. This let the system discover non-obvious parameter combinations that a manual sweep would likely miss.</p>
+            <aside class="callout callout--brand">
+              <p><strong>The result:</strong> We won Best Project. And we scored dead last on the presentation.</p>
+            </aside>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">02</span>
+              <h3 class="advice-section__title">Where it broke down</h3>
+            </div>
+            <p>The technical execution wasn't the problem. The problem was that two people built essentially the entire project. Myself and one other teammate were genuinely invested, we understood the problem, cared about the outcome, and drove everything forward. The rest of the group never got there. The work was too far outside their comfort zone. They were used to loading a CSV, running a model, and calling it done. Building a synthetic dataset pipeline from scratch, implementing a custom perturbation framework, training a YOLO detector, that's a different category of effort, and we never successfully brought them into it.</p>
+            <p>To be fair, we tried. We built out a shared checklist and assigned work explicitly. But a checklist doesn't manufacture engagement, and it doesn't replace the hours of context-building that made the project make sense to us but not to them. Work concentrated on two people. The presentation suffered because the people presenting it didn't fully understand what they were presenting.</p>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">03</span>
+              <h3 class="advice-section__title">The failure came from a lack of project management</h3>
+            </div>
+            <p>To address this, I believe that I should be focusing more on project management skills, specifically Lean. Lean project management isn't just about efficiency, it's about eliminating waste, and the biggest source of waste on a team isn't bad code, it's misalignment. When people don't understand why something matters, they disengage. When they disengage, the work concentrates on fewer shoulders. And when the work concentrates, quality suffers in the places you're not looking. In our case, that showed up on the presentation stage, not in the codebase.</p>
+            <aside class="callout callout--brand">
+              <p><strong>Key takeaway:</strong> Shared understanding is a prerequisite to shared effort. You can't pull people into unfamiliar territory with a task list. You need a story they care about first.</p>
+            </aside>
+          </section>
+
+          <section class="advice-section" data-reveal>
+            <div class="advice-section__head">
+              <span class="advice-section__number">04</span>
+              <h3 class="advice-section__title">In the future</h3>
+            </div>
+            <p>If I could go back, I'd spend the first week differently. Less time architecting the pipeline, more time getting everyone to feel the problem. Show the team a Flock camera mounted on a telephone pole. Pull up a map of how many are operating in your city. Make it real. Because once someone understands that a network of cameras can reconstruct your daily routine from your license plate alone, the synthetic dataset stops feeling abstract and starts feeling necessary.</p>
+            <p>That's the Lean principle I underestimated: shared understanding as a prerequisite to shared effort. You can't pull people into unfamiliar territory with a task list. You need a story they care about first.</p>
+          </section>
+
+          <section class="final-thought" data-reveal>
+            <h3 class="final-thought__title">Final Thought</h3>
+            <p>The technical wins are real and I'm proud of them. Using NEAT as an optimization strategy for adversarial perturbations was genuinely novel territory for our team. Building a production-ready API with UV, structuring an image processing pipeline from scratch, working with real-world constraints like plate geometry and lighting variance, that's not a class assignment, that's engineering. Winning Best Project reflects that.</p>
+            <p>But the gap between "best project" and "best presentation" is a gap I want to close. And closing it has nothing to do with slide design or public speaking. It has everything to do with building teams that are bought in before the first line of code is written.</p>
+            <p class="final-thought__signoff">Best project, worst presentation. Lesson logged.</p>
+          </section>
+
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer__contact">
+        <a href="mailto:Yousef.Eddin123@gmail.com" aria-label="Email">✉ Yousef.Eddin123@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yeddin/" target="_blank" rel="noopener" aria-label="LinkedIn">in/ yeddin</a>
+        <a href="tel:17044941541" aria-label="Phone">(704) 494-1541</a>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> <strong>Yousef Eddin</strong> · Built with vanilla HTML &amp; CSS</p>
+    </div>
+  </footer>
+
+  <script src="../../site.js" defer></script>
+</body>
+</html>
