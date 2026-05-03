@@ -598,3 +598,24 @@
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow);
 }
+
+/* ---------- In-post blog figure ---------- */
+.blog-figure {
+  margin: 1.8rem auto;
+  max-width: 460px;
+  text-align: center;
+}
+.blog-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+.blog-figure figcaption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.5;
+}
