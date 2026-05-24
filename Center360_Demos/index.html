@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Center360 Check-In</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.3.1/css/tom-select.default.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tom-select/2.3.1/js/tom-select.complete.min.js"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-labelledby="checkin-label">
+      <img
+        src="Center360_Logo.png"
+        alt="Center360 logo"
+        class="logo"
+      />
+
+      <p id="checkin-label" class="label">Select Your Name</p>
+
+      <div class="dropdown-wrapper">
+        <select id="student-select" placeholder="Start typing your name..." aria-label="Select your name"></select>
+      </div>
+
+      <button id="check-in-btn" class="check-in-btn" type="button" disabled>
+        <span id="btn-label">Check In</span>
+      </button>
+
+      <p id="confirmation" class="confirmation" role="status" aria-live="polite"></p>
+      <p id="error-msg" class="error-msg" role="alert" aria-live="assertive"></p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
