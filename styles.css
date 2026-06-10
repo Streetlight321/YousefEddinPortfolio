@@ -783,6 +783,71 @@ a { color: var(--brand); }
 }
 
 /* ==========================================================
+   Countdowns
+   ========================================================== */
+.countdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+
+.countdown__card {
+  --countdown-accent: var(--brand);
+  flex: 1 1 220px;
+  background: var(--panel);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 0.9rem 1.1rem 1rem;
+}
+.countdown__card--highlight { --countdown-accent: var(--highlight); }
+.countdown__card--accent { --countdown-accent: var(--accent); }
+
+.countdown__title {
+  display: inline-block;
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+
+.countdown__units {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.countdown__number {
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--countdown-accent);
+  transition: transform 0.25s var(--ease-out);
+}
+
+.countdown__label {
+  margin-top: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown__number { transition: none; }
+}
+
+/* ==========================================================
    Responsive
    ========================================================== */
 @media (max-width: 960px) {
@@ -793,4 +858,6 @@ a { color: var(--brand); }
   .cards { grid-template-columns: 1fr; }
   .footer__contact { flex-direction: column; gap: 0.5rem; }
   .intro__aside { max-width: 100%; }
+  .countdown { flex-direction: column; }
+  .countdown__card { flex: 1 1 auto; }
 }

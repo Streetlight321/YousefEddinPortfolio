@@ -133,6 +133,37 @@
     on(document, 'click', () => setOpen(false));
   }
 
+  /* ---------- Countdowns ---------- */
+  function initCountdowns() {
+    const cards = qsa('#countdown-grad, #countdown-intern');
+    if (!cards.length) return;
+
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const render = (card) => {
+      const deadline = new Date(card.dataset.deadline).getTime();
+      let diff = Math.max(0, deadline - Date.now());
+
+      const days = Math.floor(diff / 86400000); diff -= days * 86400000;
+      const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
+      const mins = Math.floor(diff / 60000); diff -= mins * 60000;
+      const secs = Math.floor(diff / 1000);
+
+      const set = (sel, val) => {
+        const el = qs(sel, card);
+        if (el) el.textContent = pad(val);
+      };
+      set('[data-days]', days);
+      set('[data-hours]', hours);
+      set('[data-mins]', mins);
+      set('[data-secs]', secs);
+    };
+
+    const tick = () => cards.forEach(render);
+    tick();
+    setInterval(tick, 1000);
+  }
+
   /* ---------- Boot ---------- */
   function boot() {
     stampYear();
@@ -141,6 +172,7 @@
     initRipple();
     initTypewriter();
     initGifCredit();
+    initCountdowns();
   }
 
   if (document.readyState === 'loading') {
